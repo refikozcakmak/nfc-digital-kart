@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dijital Kart</title>
+    <title>XLine Reklam | Refik ÖZÇAKMAK</title>
 
     <style>
         * {
@@ -13,41 +13,63 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            color: #222;
+            background: #111;
+            color: #fff;
+            padding: 25px 15px;
         }
 
         .card {
-            max-width: 420px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 25px;
-            padding: 30px 20px;
+            max-width: 430px;
+            margin: 0 auto;
+            background: #1c1c1c;
+            border-radius: 28px;
+            padding: 30px 22px;
             text-align: center;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.45);
+        }
+
+        .logo {
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .logo span {
+            color: #e00000;
+        }
+
+        .company {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 28px;
         }
 
         .profile {
-            width: 110px;
-            height: 110px;
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 18px;
             border-radius: 50%;
-            background: #ddd;
-            margin: 0 auto 20px;
+            background: #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: 42px;
+            border: 3px solid #e00000;
         }
 
         h1 {
-            margin: 5px 0;
-            font-size: 28px;
+            margin: 0;
+            font-size: 27px;
         }
 
-        .job {
-            color: #777;
-            margin-bottom: 25px;
+        .title {
+            margin-top: 7px;
+            color: #aaa;
+            font-size: 15px;
+            margin-bottom: 28px;
         }
 
         .buttons {
@@ -57,23 +79,39 @@
         }
 
         .button {
-            display: block;
-            padding: 15px;
-            border-radius: 12px;
-            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px;
+            border-radius: 14px;
+            background: #292929;
             color: white;
-            background: #111;
+            text-decoration: none;
+            font-size: 16px;
             font-weight: bold;
+            border: 1px solid #3b3b3b;
+            transition: 0.2s;
         }
 
         .button:hover {
-            opacity: 0.85;
+            transform: translateY(-2px);
+            background: #333;
+        }
+
+        .highlight {
+            background: #d90000;
+            border-color: #d90000;
+        }
+
+        .highlight:hover {
+            background: #b80000;
         }
 
         .footer {
             margin-top: 25px;
-            font-size: 12px;
-            color: #999;
+            color: #666;
+            font-size: 11px;
         }
     </style>
 </head>
@@ -82,45 +120,85 @@
 
     <div class="card">
 
-        <div class="profile">
-            👤
+        <div class="logo">
+            X<span>LINE</span>
         </div>
 
-        <h1>Ahmet Yılmaz</h1>
+        <div class="company">
+            TANITIM REKLAM
+        </div>
 
-        <div class="job">
-            Grafik Tasarımcı
+        <div class="profile">
+            X
+        </div>
+
+        <h1>Refik ÖZÇAKMAK</h1>
+
+        <div class="title">
+            XLine Reklam
         </div>
 
         <div class="buttons">
 
-            <a class="button" href="tel:+905551112233">
+            <a class="button highlight"
+               href="tel:+905535964626">
                 📞 Beni Ara
             </a>
 
-            <a class="button" href="https://wa.me/905551112233">
+            <a class="button"
+               href="https://wa.me/905535964626">
                 💬 WhatsApp
             </a>
 
-            <a class="button" href="https://instagram.com">
-                📷 Instagram
+            <a class="button"
+               href="https://www.google.com/maps/dir/?api=1&destination=36.546513015199764,32.001413146036626"
+               target="_blank">
+                📍 Konuma Git
             </a>
 
-            <a class="button" href="mailto:ornek@mail.com">
-                ✉️ E-posta
+            <a class="button"
+               href="javascript:void(0)"
+               onclick="copyIBAN()">
+                🏦 IBAN'ı Kopyala
             </a>
 
-            <a class="button" href="#">
+            <a class="button"
+               href="#"
+               onclick="alert('Site bağlantısı yakında eklenecek.'); return false;">
                 🌐 Web Sitesi
+            </a>
+
+            <a class="button"
+               href="#"
+               onclick="alert('Sosyal medya bağlantısı yakında eklenecek.'); return false;">
+                📱 Sosyal Medya
+            </a>
+
+            <a class="button"
+               href="#"
+               onclick="alert('Katalog bağlantısı yakında eklenecek.'); return false;">
+                📖 Katalog
             </a>
 
         </div>
 
         <div class="footer">
-            Dijital Kart
+            XLine Reklam • Dijital Kart
         </div>
 
     </div>
+
+    <script>
+        function copyIBAN() {
+            const iban = "TR180015700000000070583687";
+
+            navigator.clipboard.writeText(iban).then(function() {
+                alert("IBAN kopyalandı.");
+            }).catch(function() {
+                alert("IBAN: " + iban);
+            });
+        }
+    </script>
 
 </body>
 </html>
