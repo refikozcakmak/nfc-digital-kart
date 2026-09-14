@@ -8,401 +8,178 @@
 <title>XLine Reklam | Business Smart Card</title>
 
 <style>
+
+/* =====================================================
+   TEMEL
+===================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html,body{
+html,
+body{
     width:100%;
     min-height:100%;
-    font-family:Arial,Helvetica,sans-serif;
     background:#050505;
     color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
     overflow-x:hidden;
 }
 
-/* =========================================================
-   AÇILIŞ EKRANI
-   ========================================================= */
+
+/* =====================================================
+   GİRİŞ EKRANI
+   %100 OPak - ALTTAKİ SAYFA ASLA GÖRÜNMEZ
+===================================================== */
 
 #intro{
+
     position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
+
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    width:100vw;
+    height:100vh;
+
     z-index:999999;
 
-    /* TAMAMEN OPak ARKA PLAN */
-    background:
-        radial-gradient(
-            circle at 50% 42%,
-            #181818 0%,
-            #101010 35%,
-            #080808 65%,
-            #030303 100%
-        );
+    /*
+       ÖNEMLİ:
+       BURASI TAMAMEN OPak.
+       transparent YOK.
+       rgba YOK.
+    */
+
+    background:#050505;
 
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
 
     opacity:1;
     visibility:visible;
 
+    isolation:isolate;
+
     transition:
         opacity .8s ease,
         visibility .8s ease;
-
-    overflow:hidden;
-
-    /* Alttaki içerikle karışmayı kesin olarak engeller */
-    isolation:isolate;
 }
 
+
+/* Giriş ekranı kapanırken */
+
 #intro.hide{
+
     opacity:0;
+
     visibility:hidden;
+
     pointer-events:none;
 }
 
-/* Kırmızı ışık efekti */
+
+/* =====================================================
+   GİRİŞ EKRANININ KENDİ IŞIĞI
+   BU EFEKT SADECE OPak SİYAH ZEMİNİN ÜZERİNDE
+===================================================== */
 
 .intro-glow{
+
     position:absolute;
-    width:420px;
-    height:420px;
+
+    width:500px;
+    height:500px;
 
     left:50%;
-    top:45%;
+    top:48%;
 
     transform:translate(-50%,-50%);
 
-    background:radial-gradient(
-        circle,
-        rgba(220,0,0,.22) 0%,
-        rgba(180,0,0,.10) 30%,
-        rgba(120,0,0,.04) 50%,
-        transparent 72%
-    );
+    /*
+       Efektin merkezinde bile #050505 zemin
+       korunuyor. Alttaki sayfadan hiçbir şey
+       alınmıyor.
+    */
 
-    filter:blur(18px);
+    background:
+        radial-gradient(
+            circle,
+            #241010 0%,
+            #130909 22%,
+            #090505 48%,
+            #050505 70%,
+            #050505 100%
+        );
 
-    animation:
-        glowPulse 2.8s ease-in-out infinite alternate;
+    filter:blur(10px);
+
+    animation:introGlow 3s ease-in-out infinite alternate;
 
     pointer-events:none;
 }
 
-@keyframes glowPulse{
-    from{
-        transform:translate(-50%,-50%) scale(.85);
-        opacity:.55;
-    }
-
-    to{
-        transform:translate(-50%,-50%) scale(1.12);
-        opacity:1;
-    }
-}
-
-/* Açılış içeriği */
-
-.intro-content{
-    position:relative;
-    z-index:5;
-
-    width:100%;
-    max-width:430px;
-
-    padding:30px 20px;
-
-    text-align:center;
-}
-
-/* XLINE */
-
-.intro-xline{
-    font-size:52px;
-    font-weight:900;
-    letter-spacing:7px;
-
-    line-height:1;
-
-    opacity:0;
-
-    animation:
-        introLogo 1s cubic-bezier(.2,.8,.2,1) .2s forwards;
-}
-
-.intro-xline span{
-    color:#e00000;
-}
-
-@keyframes introLogo{
+@keyframes introGlow{
 
     0%{
-        opacity:0;
-        transform:scale(.65);
-        filter:blur(15px);
-    }
+        transform:
+            translate(-50%,-50%)
+            scale(.82);
 
-    60%{
-        opacity:1;
-        transform:scale(1.08);
-        filter:blur(0);
+        opacity:.7;
     }
 
     100%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.08);
+
         opacity:1;
-        transform:scale(1);
-        filter:blur(0);
     }
 }
 
-/* Kırmızı çizgi */
 
-.intro-line{
-    width:0;
-    height:3px;
+/* =====================================================
+   İNCE KIRMIZI TARAMA
+===================================================== */
 
-    margin:18px auto 28px;
+.scan-line{
+
+    position:absolute;
+
+    left:0;
+
+    top:-10%;
+
+    width:100%;
+
+    height:1px;
 
     background:#e00000;
 
+    opacity:.35;
+
     box-shadow:
-        0 0 8px rgba(220,0,0,.8),
-        0 0 22px rgba(220,0,0,.45);
+        0 0 10px #e00000,
+        0 0 25px #e00000;
 
-    animation:
-        lineGrow .8s ease 1s forwards;
+    animation:scanMove 3s linear infinite;
+
+    pointer-events:none;
 }
 
-@keyframes lineGrow{
-    from{
-        width:0;
-        opacity:0;
-    }
-
-    to{
-        width:150px;
-        opacity:1;
-    }
-}
-
-/* =========================================================
-   ALT MARKA LOGOLARI
-   ========================================================= */
-
-.brand-container{
-    position:relative;
-
-    width:100%;
-    min-height:125px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:14px;
-
-    margin:0 auto 25px;
-}
-
-.brand{
-    width:105px;
-    height:105px;
-
-    object-fit:contain;
-
-    opacity:0;
-
-    filter:
-        drop-shadow(0 0 8px rgba(255,255,255,.08));
-
-    transition:
-        transform .3s ease,
-        filter .3s ease;
-}
-
-/* GRASOTRE */
-
-.brand.grasotre{
-    animation:
-        brandLeft 1s cubic-bezier(.2,.8,.2,1) 1.15s forwards;
-}
-
-@keyframes brandLeft{
-
-    0%{
-        opacity:0;
-        transform:
-            translateX(-100px)
-            scale(.65)
-            rotate(-8deg);
-
-        filter:blur(12px);
-    }
-
-    70%{
-        opacity:1;
-        transform:
-            translateX(10px)
-            scale(1.05)
-            rotate(1deg);
-
-        filter:blur(0);
-    }
-
-    100%{
-        opacity:1;
-        transform:
-            translateX(0)
-            scale(1)
-            rotate(0);
-
-        filter:blur(0);
-    }
-}
-
-/* PROMX */
-
-.brand.promx{
-    animation:
-        brandCenter 1s cubic-bezier(.2,.8,.2,1) 1.3s forwards;
-}
-
-@keyframes brandCenter{
-
-    0%{
-        opacity:0;
-        transform:
-            translateY(80px)
-            scale(.55);
-
-        filter:blur(12px);
-    }
-
-    70%{
-        opacity:1;
-        transform:
-            translateY(-8px)
-            scale(1.07);
-
-        filter:blur(0);
-    }
-
-    100%{
-        opacity:1;
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:blur(0);
-    }
-}
-
-/* XMAT */
-
-.brand.xmat{
-    animation:
-        brandRight 1s cubic-bezier(.2,.8,.2,1) 1.45s forwards;
-}
-
-@keyframes brandRight{
-
-    0%{
-        opacity:0;
-        transform:
-            translateX(100px)
-            scale(.65)
-            rotate(8deg);
-
-        filter:blur(12px);
-    }
-
-    70%{
-        opacity:1;
-        transform:
-            translateX(-10px)
-            scale(1.05)
-            rotate(-1deg);
-
-        filter:blur(0);
-    }
-
-    100%{
-        opacity:1;
-        transform:
-            translateX(0)
-            scale(1)
-            rotate(0);
-
-        filter:blur(0);
-    }
-}
-
-/* =========================================================
-   BUSINESS SMART CARD
-   ========================================================= */
-
-.welcome{
-    font-size:13px;
-    font-weight:700;
-
-    letter-spacing:4px;
-
-    color:#aaa;
-
-    opacity:0;
-
-    animation:
-        welcomeIn .8s ease 2.05s forwards;
-}
-
-@keyframes welcomeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(15px);
-        letter-spacing:8px;
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-        letter-spacing:4px;
-    }
-}
-
-/* Tarama çizgisi */
-
-.scan-line{
-    position:absolute;
-
-    width:100%;
-    height:1px;
-
-    left:0;
-    top:0;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(220,0,0,.7),
-        transparent
-    );
-
-    opacity:.25;
-
-    animation:
-        scan 3s linear infinite;
-}
-
-@keyframes scan{
+@keyframes scanMove{
 
     0%{
         top:-10%;
@@ -413,23 +190,406 @@ body{
     }
 }
 
-/* =========================================================
-   ANA KART
-   ========================================================= */
+
+/* =====================================================
+   GİRİŞ İÇERİĞİ
+===================================================== */
+
+.intro-content{
+
+    position:relative;
+
+    z-index:10;
+
+    width:100%;
+
+    max-width:430px;
+
+    padding:30px 20px;
+
+    text-align:center;
+}
+
+
+/* =====================================================
+   XLINE
+===================================================== */
+
+.intro-xline{
+
+    font-size:52px;
+
+    font-weight:900;
+
+    letter-spacing:7px;
+
+    line-height:1;
+
+    opacity:0;
+
+    animation:
+        introLogo
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        .2s
+        forwards;
+}
+
+.intro-xline span{
+
+    color:#e00000;
+}
+
+
+@keyframes introLogo{
+
+    0%{
+
+        opacity:0;
+
+        transform:scale(.65);
+
+        filter:blur(15px);
+    }
+
+    60%{
+
+        opacity:1;
+
+        transform:scale(1.08);
+
+        filter:blur(0);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+        filter:blur(0);
+    }
+}
+
+
+/* =====================================================
+   KIRMIZI ÇİZGİ
+===================================================== */
+
+.intro-line{
+
+    width:0;
+
+    height:3px;
+
+    margin:
+        18px
+        auto
+        28px;
+
+    background:#e00000;
+
+    box-shadow:
+        0 0 8px #e00000,
+        0 0 22px #e00000;
+
+    animation:
+        lineGrow
+        .8s
+        ease
+        1s
+        forwards;
+}
+
+@keyframes lineGrow{
+
+    from{
+
+        width:0;
+
+        opacity:0;
+    }
+
+    to{
+
+        width:150px;
+
+        opacity:1;
+    }
+}
+
+
+/* =====================================================
+   MARKA LOGOLARI
+===================================================== */
+
+.brand-container{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:125px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+    margin:
+        0
+        auto
+        25px;
+}
+
+
+.brand{
+
+    width:105px;
+
+    height:105px;
+
+    object-fit:contain;
+
+    opacity:0;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,255,255,.08)
+        );
+}
+
+
+/* GRASOTRE */
+
+.brand.grasotre{
+
+    animation:
+        brandLeft
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        1.15s
+        forwards;
+}
+
+@keyframes brandLeft{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateX(-100px)
+            scale(.65)
+            rotate(-8deg);
+
+        filter:blur(12px);
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+            translateX(10px)
+            scale(1.05)
+            rotate(1deg);
+
+        filter:blur(0);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateX(0)
+            scale(1)
+            rotate(0);
+
+        filter:blur(0);
+    }
+}
+
+
+/* PROMX */
+
+.brand.promx{
+
+    animation:
+        brandCenter
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        1.3s
+        forwards;
+}
+
+@keyframes brandCenter{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(80px)
+            scale(.55);
+
+        filter:blur(12px);
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+            translateY(-8px)
+            scale(1.07);
+
+        filter:blur(0);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
+    }
+}
+
+
+/* XMAT */
+
+.brand.xmat{
+
+    animation:
+        brandRight
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        1.45s
+        forwards;
+}
+
+@keyframes brandRight{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateX(100px)
+            scale(.65)
+            rotate(8deg);
+
+        filter:blur(12px);
+    }
+
+    70%{
+
+        opacity:1;
+
+        transform:
+            translateX(-10px)
+            scale(1.05)
+            rotate(-1deg);
+
+        filter:blur(0);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            translateX(0)
+            scale(1)
+            rotate(0);
+
+        filter:blur(0);
+    }
+}
+
+
+/* =====================================================
+   BUSINESS SMART CARD
+===================================================== */
+
+.welcome{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    color:#aaa;
+
+    opacity:0;
+
+    animation:
+        welcomeIn
+        .8s
+        ease
+        2.05s
+        forwards;
+}
+
+@keyframes welcomeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+        letter-spacing:8px;
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+        letter-spacing:4px;
+    }
+}
+
+
+/* =====================================================
+   ANA SAYFA
+===================================================== */
 
 .main-wrapper{
+
     width:100%;
+
     min-height:100vh;
 
     display:flex;
+
     justify-content:center;
+
     align-items:flex-start;
 
-    padding:30px 15px 40px;
+    padding:
+        30px
+        15px
+        40px;
 }
 
+
 .card{
+
     width:100%;
+
     max-width:430px;
 
     background:
@@ -439,11 +599,15 @@ body{
             #080808
         );
 
-    border:1px solid #252525;
+    border:
+        1px solid #252525;
 
     border-radius:26px;
 
-    padding:28px 20px 25px;
+    padding:
+        28px
+        20px
+        25px;
 
     box-shadow:
         0 20px 70px rgba(0,0,0,.65),
@@ -452,15 +616,22 @@ body{
     overflow:hidden;
 }
 
-/* Logo */
+
+/* =====================================================
+   XLINE LOGO
+===================================================== */
 
 .logo-area{
+
     text-align:center;
+
     margin-bottom:20px;
 }
 
 .logo-area img{
+
     width:150px;
+
     max-width:70%;
 
     height:auto;
@@ -468,10 +639,13 @@ body{
     object-fit:contain;
 }
 
+
 .brand-name{
+
     margin-top:10px;
 
     font-size:12px;
+
     font-weight:bold;
 
     letter-spacing:3px;
@@ -479,45 +653,64 @@ body{
     color:#aaa;
 }
 
-/* Profil */
+
+/* =====================================================
+   PROFİL
+===================================================== */
 
 .profile{
+
     text-align:center;
 
-    padding:20px 0 10px;
+    padding:
+        20px
+        0
+        10px;
 }
 
+
 .profile h1{
+
     font-size:25px;
+
     font-weight:800;
 
     margin-bottom:7px;
 }
 
+
 .profile p{
+
     color:#aaa;
 
     font-size:14px;
 }
 
-/* =========================================================
+
+/* =====================================================
    HIZLI BUTONLAR
-   ========================================================= */
+===================================================== */
 
 .quick-buttons{
+
     display:grid;
 
     grid-template-columns:1fr 1fr;
 
     gap:10px;
 
-    margin:18px 0;
+    margin:
+        18px
+        0;
 }
 
+
 .quick-btn{
+
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     min-height:48px;
@@ -527,57 +720,91 @@ body{
     text-decoration:none;
 
     font-size:14px;
+
     font-weight:700;
 
     transition:.25s ease;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    cursor:pointer;
 }
+
 
 .call-btn{
+
     background:#e00000;
+
     color:#fff;
+
+    border:none;
 
     box-shadow:
-        0 8px 25px rgba(220,0,0,.18);
+        0 8px 25px
+        rgba(220,0,0,.18);
 }
+
 
 .save-btn{
+
     background:#171717;
+
     color:#fff;
 
-    border:1px solid #303030;
+    border:
+        1px solid #303030;
 }
 
+
 .quick-btn:hover{
+
     transform:translateY(-2px);
 }
 
-/* =========================================================
+
+/* =====================================================
    HİZMET ŞERİDİ
-   ========================================================= */
+===================================================== */
 
 .ticker{
+
     width:100%;
+
     overflow:hidden;
 
-    margin:15px 0 20px;
+    margin:
+        15px
+        0
+        20px;
 
-    border-top:1px solid #222;
-    border-bottom:1px solid #222;
+    border-top:
+        1px solid #222;
+
+    border-bottom:
+        1px solid #222;
 
     padding:10px 0;
 }
 
+
 .ticker-track{
+
     display:flex;
 
     width:max-content;
 
     animation:
-        tickerMove 20s linear infinite;
+        tickerMove
+        20s
+        linear
+        infinite;
 }
 
+
 .ticker span{
+
     font-size:10px;
+
     font-weight:bold;
 
     letter-spacing:2px;
@@ -589,7 +816,9 @@ body{
     white-space:nowrap;
 }
 
+
 .ticker span::before{
+
     content:"●";
 
     color:#e00000;
@@ -599,22 +828,27 @@ body{
     font-size:8px;
 }
 
+
 @keyframes tickerMove{
 
     from{
+
         transform:translateX(0);
     }
 
     to{
+
         transform:translateX(-50%);
     }
 }
 
-/* =========================================================
+
+/* =====================================================
    BUTONLAR
-   ========================================================= */
+===================================================== */
 
 .buttons{
+
     display:flex;
 
     flex-direction:column;
@@ -622,7 +856,9 @@ body{
     gap:10px;
 }
 
+
 .action-btn{
+
     width:100%;
 
     min-height:51px;
@@ -630,28 +866,37 @@ body{
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     border-radius:14px;
 
     background:#111;
 
-    border:1px solid #292929;
+    border:
+        1px solid #292929;
 
     color:#fff;
 
     text-decoration:none;
 
     font-size:14px;
+
     font-weight:700;
 
     transition:
         transform .25s ease,
         background .25s ease,
         border-color .25s ease;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    cursor:pointer;
 }
 
+
 .action-btn:hover{
+
     transform:translateY(-2px);
 
     background:#171717;
@@ -659,28 +904,37 @@ body{
     border-color:#444;
 }
 
+
 .action-btn.red{
+
     background:#b80000;
 
     border-color:#d00000;
 }
 
+
 .action-btn.red:hover{
+
     background:#d00000;
 }
 
-/* =========================================================
+
+/* =====================================================
    GOOGLE YORUM
-   ========================================================= */
+===================================================== */
 
 .review{
+
     margin-top:15px;
 }
 
+
 .review a{
+
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     min-height:48px;
@@ -691,19 +945,23 @@ body{
 
     color:#fff;
 
-    border:1px solid #292929;
+    border:
+        1px solid #292929;
 
     background:#0f0f0f;
 
     font-size:13px;
+
     font-weight:700;
 }
 
-/* =========================================================
-   ALT BİLGİ
-   ========================================================= */
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer{
+
     text-align:center;
 
     margin-top:22px;
@@ -715,47 +973,61 @@ body{
     letter-spacing:1.5px;
 }
 
+
 .footer strong{
+
     color:#aaa;
 }
 
-/* =========================================================
+
+/* =====================================================
    MOBİL
-   ========================================================= */
+===================================================== */
 
 @media(max-width:380px){
 
     .intro-xline{
+
         font-size:43px;
+
         letter-spacing:5px;
     }
 
     .brand-container{
+
         gap:7px;
     }
 
     .brand{
+
         width:88px;
+
         height:88px;
     }
 
     .welcome{
+
         font-size:11px;
+
         letter-spacing:3px;
     }
 
     .profile h1{
+
         font-size:22px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =======================================================
-     AÇILIŞ EKRANI
-     ======================================================= -->
+
+<!-- =====================================================
+     TAMAMEN OPak GİRİŞ EKRANI
+===================================================== -->
 
 <div id="intro">
 
@@ -770,6 +1042,7 @@ body{
         </div>
 
         <div class="intro-line"></div>
+
 
         <div class="brand-container">
 
@@ -793,6 +1066,7 @@ body{
 
         </div>
 
+
         <div class="welcome">
             BUSINESS SMART CARD
         </div>
@@ -802,13 +1076,15 @@ body{
 </div>
 
 
-<!-- =======================================================
-     ANA SAYFA
-     ======================================================= -->
+
+<!-- =====================================================
+     ANA KART
+===================================================== -->
 
 <div class="main-wrapper">
 
     <main class="card">
+
 
         <!-- XLINE LOGO -->
 
@@ -852,6 +1128,7 @@ body{
                 Hemen Ara
             </a>
 
+
             <button
                 class="quick-btn save-btn"
                 onclick="saveContact()"
@@ -869,15 +1146,24 @@ body{
             <div class="ticker-track">
 
                 <span>TABELA &amp; REKLAM</span>
+
                 <span>MATBAA</span>
+
                 <span>PROMOSYON</span>
+
                 <span>TEKSTİL BASKI</span>
+
                 <span>LED EKRAN</span>
 
+
                 <span>TABELA &amp; REKLAM</span>
+
                 <span>MATBAA</span>
+
                 <span>PROMOSYON</span>
+
                 <span>TEKSTİL BASKI</span>
+
                 <span>LED EKRAN</span>
 
             </div>
@@ -888,6 +1174,7 @@ body{
         <!-- BUTONLAR -->
 
         <div class="buttons">
+
 
             <a
                 class="action-btn red"
@@ -952,7 +1239,7 @@ body{
         </div>
 
 
-        <!-- GOOGLE YORUM -->
+        <!-- GOOGLE -->
 
         <div class="review">
 
@@ -971,59 +1258,71 @@ body{
         <div class="footer">
 
             <strong>XLINE REKLAM</strong>
+
             <br>
+
             Business Smart Card
 
         </div>
+
 
     </main>
 
 </div>
 
 
+
 <script>
 
-/* =========================================================
-   AÇILIŞ EKRANI
-   ========================================================= */
+/* =====================================================
+   GİRİŞ ANİMASYONU
+===================================================== */
 
-window.addEventListener("load", function(){
+window.addEventListener("load",function(){
 
     setTimeout(function(){
 
-        const intro = document.getElementById("intro");
+        const intro =
+            document.getElementById("intro");
 
         if(intro){
+
             intro.classList.add("hide");
+
         }
 
-    }, 3300);
+    },3300);
 
 });
 
 
-/* =========================================================
+/* =====================================================
    IBAN KOPYALA
-   ========================================================= */
+===================================================== */
 
 function copyIBAN(){
 
     const iban =
         "TR180015700000000070583687";
 
-    if(navigator.clipboard){
 
-        navigator.clipboard.writeText(iban)
-        .then(function(){
+    if(
+        navigator.clipboard &&
+        window.isSecureContext
+    ){
 
-            alert("IBAN kopyalandı.");
+        navigator.clipboard
+            .writeText(iban)
+            .then(function(){
 
-        })
-        .catch(function(){
+                alert("IBAN kopyalandı.");
 
-            fallbackCopy(iban);
+            })
+            .catch(function(){
 
-        });
+                fallbackCopy(iban);
+
+            });
 
     }else{
 
@@ -1034,18 +1333,23 @@ function copyIBAN(){
 }
 
 
-/* Eski cihazlar için kopyalama */
-
 function fallbackCopy(text){
 
     const input =
         document.createElement("textarea");
 
-    input.value = text;
+    input.value=text;
+
+    input.style.position="fixed";
+
+    input.style.opacity="0";
 
     document.body.appendChild(input);
 
+    input.focus();
+
     input.select();
+
 
     try{
 
@@ -1055,18 +1359,21 @@ function fallbackCopy(text){
 
     }catch(e){
 
-        alert("IBAN: " + text);
+        alert(
+            "IBAN: " + text
+        );
 
     }
+
 
     document.body.removeChild(input);
 
 }
 
 
-/* =========================================================
-   REHBERİME KAYDET
-   ========================================================= */
+/* =====================================================
+   REHBER KAYDI
+===================================================== */
 
 function saveContact(){
 
@@ -1077,31 +1384,39 @@ N:ÖZÇAKMAK;Refik;;;
 FN:Refik ÖZÇAKMAK
 ORG:XLine Reklam
 TEL;TYPE=CELL:+905535964626
-URL:https://github.com/refikozcakmak/nfc-digital-kart
 END:VCARD`;
+
 
     const blob =
         new Blob(
             [vcard],
-            {type:"text/vcard;charset=utf-8"}
+            {
+                type:
+                "text/vcard;charset=utf-8"
+            }
         );
+
 
     const url =
         URL.createObjectURL(blob);
 
+
     const a =
         document.createElement("a");
 
-    a.href = url;
 
-    a.download =
+    a.href=url;
+
+    a.download=
         "Refik-Ozcakmak-XLine-Reklam.vcf";
+
 
     document.body.appendChild(a);
 
     a.click();
 
     document.body.removeChild(a);
+
 
     URL.revokeObjectURL(url);
 
