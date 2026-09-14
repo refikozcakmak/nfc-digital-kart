@@ -35,13 +35,11 @@ body{
 
 /* =====================================================
    GİRİŞ EKRANI
-   %100 OPak - ALTTAKİ SAYFA ASLA GÖRÜNMEZ
+   TAMAMEN OPAK
 ===================================================== */
 
 #intro{
-
     position:fixed;
-
     top:0;
     left:0;
     right:0;
@@ -51,13 +49,6 @@ body{
     height:100vh;
 
     z-index:999999;
-
-    /*
-       ÖNEMLİ:
-       BURASI TAMAMEN OPak.
-       transparent YOK.
-       rgba YOK.
-    */
 
     background:#050505;
 
@@ -77,26 +68,18 @@ body{
         visibility .8s ease;
 }
 
-
-/* Giriş ekranı kapanırken */
-
 #intro.hide{
-
     opacity:0;
-
     visibility:hidden;
-
     pointer-events:none;
 }
 
 
 /* =====================================================
-   GİRİŞ EKRANININ KENDİ IŞIĞI
-   BU EFEKT SADECE OPak SİYAH ZEMİNİN ÜZERİNDE
+   GİRİŞ IŞIĞI
 ===================================================== */
 
 .intro-glow{
-
     position:absolute;
 
     width:500px;
@@ -106,12 +89,6 @@ body{
     top:48%;
 
     transform:translate(-50%,-50%);
-
-    /*
-       Efektin merkezinde bile #050505 zemin
-       korunuyor. Alttaki sayfadan hiçbir şey
-       alınmıyor.
-    */
 
     background:
         radial-gradient(
@@ -136,7 +113,6 @@ body{
         transform:
             translate(-50%,-50%)
             scale(.82);
-
         opacity:.7;
     }
 
@@ -144,26 +120,22 @@ body{
         transform:
             translate(-50%,-50%)
             scale(1.08);
-
         opacity:1;
     }
 }
 
 
 /* =====================================================
-   İNCE KIRMIZI TARAMA
+   SCAN LINE
 ===================================================== */
 
 .scan-line{
-
     position:absolute;
 
     left:0;
-
     top:-10%;
 
     width:100%;
-
     height:1px;
 
     background:#e00000;
@@ -196,13 +168,10 @@ body{
 ===================================================== */
 
 .intro-content{
-
     position:relative;
-
     z-index:10;
 
     width:100%;
-
     max-width:430px;
 
     padding:30px 20px;
@@ -216,13 +185,10 @@ body{
 ===================================================== */
 
 .intro-xline{
-
     font-size:52px;
-
     font-weight:900;
 
     letter-spacing:7px;
-
     line-height:1;
 
     opacity:0;
@@ -236,37 +202,26 @@ body{
 }
 
 .intro-xline span{
-
     color:#e00000;
 }
-
 
 @keyframes introLogo{
 
     0%{
-
         opacity:0;
-
         transform:scale(.65);
-
         filter:blur(15px);
     }
 
     60%{
-
         opacity:1;
-
         transform:scale(1.08);
-
         filter:blur(0);
     }
 
     100%{
-
         opacity:1;
-
         transform:scale(1);
-
         filter:blur(0);
     }
 }
@@ -277,9 +232,7 @@ body{
 ===================================================== */
 
 .intro-line{
-
     width:0;
-
     height:3px;
 
     margin:
@@ -304,37 +257,29 @@ body{
 @keyframes lineGrow{
 
     from{
-
         width:0;
-
         opacity:0;
     }
 
     to{
-
         width:150px;
-
         opacity:1;
     }
 }
 
 
 /* =====================================================
-   MARKA LOGOLARI
+   GİRİŞ LOGOLARI
 ===================================================== */
 
 .brand-container{
-
     position:relative;
 
     width:100%;
-
     min-height:125px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     gap:14px;
@@ -345,11 +290,8 @@ body{
         25px;
 }
 
-
 .brand{
-
     width:105px;
-
     height:105px;
 
     object-fit:contain;
@@ -367,7 +309,6 @@ body{
 /* GRASOTRE */
 
 .brand.grasotre{
-
     animation:
         brandLeft
         1s
@@ -379,7 +320,6 @@ body{
 @keyframes brandLeft{
 
     0%{
-
         opacity:0;
 
         transform:
@@ -391,7 +331,6 @@ body{
     }
 
     70%{
-
         opacity:1;
 
         transform:
@@ -403,7 +342,6 @@ body{
     }
 
     100%{
-
         opacity:1;
 
         transform:
@@ -419,7 +357,6 @@ body{
 /* PROMX */
 
 .brand.promx{
-
     animation:
         brandCenter
         1s
@@ -431,7 +368,6 @@ body{
 @keyframes brandCenter{
 
     0%{
-
         opacity:0;
 
         transform:
@@ -442,7 +378,6 @@ body{
     }
 
     70%{
-
         opacity:1;
 
         transform:
@@ -453,7 +388,6 @@ body{
     }
 
     100%{
-
         opacity:1;
 
         transform:
@@ -468,7 +402,6 @@ body{
 /* XMAT */
 
 .brand.xmat{
-
     animation:
         brandRight
         1s
@@ -480,7 +413,6 @@ body{
 @keyframes brandRight{
 
     0%{
-
         opacity:0;
 
         transform:
@@ -492,7 +424,6 @@ body{
     }
 
     70%{
-
         opacity:1;
 
         transform:
@@ -504,7 +435,6 @@ body{
     }
 
     100%{
-
         opacity:1;
 
         transform:
@@ -522,7 +452,6 @@ body{
 ===================================================== */
 
 .welcome{
-
     font-size:13px;
 
     font-weight:700;
@@ -544,20 +473,14 @@ body{
 @keyframes welcomeIn{
 
     from{
-
         opacity:0;
-
         transform:translateY(15px);
-
         letter-spacing:8px;
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
         letter-spacing:4px;
     }
 }
@@ -568,15 +491,12 @@ body{
 ===================================================== */
 
 .main-wrapper{
-
     width:100%;
-
     min-height:100vh;
 
     display:flex;
 
     justify-content:center;
-
     align-items:flex-start;
 
     padding:
@@ -585,11 +505,8 @@ body{
         40px;
 }
 
-
 .card{
-
     width:100%;
-
     max-width:430px;
 
     background:
@@ -622,30 +539,21 @@ body{
 ===================================================== */
 
 .logo-area{
-
     text-align:center;
-
     margin-bottom:20px;
 }
 
 .logo-area img{
-
     width:150px;
-
     max-width:70%;
-
     height:auto;
-
     object-fit:contain;
 }
 
-
 .brand-name{
-
     margin-top:10px;
 
     font-size:12px;
-
     font-weight:bold;
 
     letter-spacing:3px;
@@ -659,7 +567,6 @@ body{
 ===================================================== */
 
 .profile{
-
     text-align:center;
 
     padding:
@@ -668,21 +575,15 @@ body{
         10px;
 }
 
-
 .profile h1{
-
     font-size:25px;
-
     font-weight:800;
 
     margin-bottom:7px;
 }
 
-
 .profile p{
-
     color:#aaa;
-
     font-size:14px;
 }
 
@@ -692,7 +593,6 @@ body{
 ===================================================== */
 
 .quick-buttons{
-
     display:grid;
 
     grid-template-columns:1fr 1fr;
@@ -704,14 +604,13 @@ body{
         0;
 }
 
-
 .quick-btn{
-
     display:flex;
 
     justify-content:center;
-
     align-items:center;
+
+    gap:8px;
 
     min-height:48px;
 
@@ -720,7 +619,6 @@ body{
     text-decoration:none;
 
     font-size:14px;
-
     font-weight:700;
 
     transition:.25s ease;
@@ -730,9 +628,7 @@ body{
     cursor:pointer;
 }
 
-
 .call-btn{
-
     background:#e00000;
 
     color:#fff;
@@ -744,9 +640,7 @@ body{
         rgba(220,0,0,.18);
 }
 
-
 .save-btn{
-
     background:#171717;
 
     color:#fff;
@@ -755,15 +649,13 @@ body{
         1px solid #303030;
 }
 
-
 .quick-btn:hover{
-
     transform:translateY(-2px);
 }
 
 
 /* =====================================================
-   HİZMET ŞERİDİ
+   KUTU ŞEKLİNDE HAREKETLİ BANNERLER
 ===================================================== */
 
 .ticker{
@@ -777,67 +669,113 @@ body{
         0
         20px;
 
-    border-top:
-        1px solid #222;
+    padding:
+        5px
+        0;
 
-    border-bottom:
-        1px solid #222;
-
-    padding:10px 0;
+    /*
+       Dış çerçeveyi kaldırdık.
+       Kutuların kendisi hareket ediyor.
+    */
 }
-
 
 .ticker-track{
 
     display:flex;
 
+    align-items:center;
+
+    gap:9px;
+
     width:max-content;
 
     animation:
         tickerMove
-        20s
+        22s
         linear
         infinite;
 }
 
-
 .ticker span{
 
-    font-size:10px;
+    display:flex;
 
-    font-weight:bold;
+    align-items:center;
 
-    letter-spacing:2px;
+    justify-content:center;
 
-    color:#999;
+    height:34px;
 
-    margin-right:28px;
+    padding:
+        0
+        15px;
+
+    border-radius:9px;
+
+    background:#151515;
+
+    border:
+        1px solid #2b2b2b;
+
+    color:#bdbdbd;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:1.4px;
 
     white-space:nowrap;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
+
+    transition:
+        .25s ease;
+}
+
+.ticker span:hover{
+
+    border-color:#e00000;
+
+    color:#fff;
+
+    background:#1b0b0b;
+
+    transform:translateY(-2px);
 }
 
 
+/* Kırmızı nokta */
+
 .ticker span::before{
 
-    content:"●";
+    content:"";
 
-    color:#e00000;
+    width:5px;
+    height:5px;
 
-    margin-right:8px;
+    border-radius:50%;
 
-    font-size:8px;
+    background:#e00000;
+
+    margin-right:7px;
+
+    box-shadow:
+        0 0 7px
+        rgba(220,0,0,.8);
+
+    flex-shrink:0;
 }
 
 
 @keyframes tickerMove{
 
     from{
-
         transform:translateX(0);
     }
 
     to{
-
         transform:translateX(-50%);
     }
 }
@@ -848,14 +786,12 @@ body{
 ===================================================== */
 
 .buttons{
-
     display:flex;
 
     flex-direction:column;
 
     gap:10px;
 }
-
 
 .action-btn{
 
@@ -868,6 +804,8 @@ body{
     align-items:center;
 
     justify-content:center;
+
+    gap:10px;
 
     border-radius:14px;
 
@@ -895,6 +833,35 @@ body{
 }
 
 
+/* =====================================================
+   BUTON İKONLARI
+===================================================== */
+
+.icon{
+
+    width:22px;
+    height:22px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:17px;
+
+    flex-shrink:0;
+
+    color:#e00000;
+}
+
+.action-btn.red .icon{
+
+    color:#fff;
+}
+
+
+/* Hover */
+
 .action-btn:hover{
 
     transform:translateY(-2px);
@@ -904,14 +871,12 @@ body{
     border-color:#444;
 }
 
-
 .action-btn.red{
 
     background:#b80000;
 
     border-color:#d00000;
 }
-
 
 .action-btn.red:hover{
 
@@ -924,18 +889,17 @@ body{
 ===================================================== */
 
 .review{
-
     margin-top:15px;
 }
-
 
 .review a{
 
     display:flex;
 
     justify-content:center;
-
     align-items:center;
+
+    gap:8px;
 
     min-height:48px;
 
@@ -973,9 +937,7 @@ body{
     letter-spacing:1.5px;
 }
 
-
 .footer strong{
-
     color:#aaa;
 }
 
@@ -1001,7 +963,6 @@ body{
     .brand{
 
         width:88px;
-
         height:88px;
     }
 
@@ -1016,6 +977,18 @@ body{
 
         font-size:22px;
     }
+
+    .ticker span{
+
+        height:32px;
+
+        padding:
+            0
+            12px;
+
+        font-size:8px;
+    }
+
 }
 
 </style>
@@ -1026,7 +999,7 @@ body{
 
 
 <!-- =====================================================
-     TAMAMEN OPak GİRİŞ EKRANI
+     GİRİŞ EKRANI
 ===================================================== -->
 
 <div id="intro">
@@ -1125,7 +1098,11 @@ body{
                 class="quick-btn call-btn"
                 href="tel:+905535964626"
             >
+
+                <span>☎</span>
+
                 Hemen Ara
+
             </a>
 
 
@@ -1133,113 +1110,213 @@ body{
                 class="quick-btn save-btn"
                 onclick="saveContact()"
             >
+
+                <span>＋</span>
+
                 Rehbere Kaydet
+
             </button>
 
         </div>
 
 
-        <!-- HİZMET ŞERİDİ -->
+
+        <!-- =================================================
+             KUTULU HİZMET BANNERLERİ
+        ================================================= -->
 
         <div class="ticker">
 
             <div class="ticker-track">
 
-                <span>TABELA &amp; REKLAM</span>
 
-                <span>MATBAA</span>
-
-                <span>PROMOSYON</span>
-
-                <span>TEKSTİL BASKI</span>
-
-                <span>LED EKRAN</span>
+                <span>
+                    TABELA &amp; REKLAM
+                </span>
 
 
-                <span>TABELA &amp; REKLAM</span>
+                <span>
+                    MATBAA
+                </span>
 
-                <span>MATBAA</span>
 
-                <span>PROMOSYON</span>
+                <span>
+                    PROMOSYON
+                </span>
 
-                <span>TEKSTİL BASKI</span>
 
-                <span>LED EKRAN</span>
+                <span>
+                    TEKSTİL BASKI
+                </span>
+
+
+                <span>
+                    LED EKRAN
+                </span>
+
+
+                <!-- İKİNCİ SET -->
+
+                <span>
+                    TABELA &amp; REKLAM
+                </span>
+
+
+                <span>
+                    MATBAA
+                </span>
+
+
+                <span>
+                    PROMOSYON
+                </span>
+
+
+                <span>
+                    TEKSTİL BASKI
+                </span>
+
+
+                <span>
+                    LED EKRAN
+                </span>
 
             </div>
 
         </div>
 
 
-        <!-- BUTONLAR -->
+
+        <!-- =================================================
+             BUTONLAR
+        ================================================= -->
 
         <div class="buttons">
 
+
+            <!-- HEMEN ARA -->
 
             <a
                 class="action-btn red"
                 href="tel:+905535964626"
             >
-                Hemen Ara
+
+                <span class="icon">☎</span>
+
+                <span>
+                    Hemen Ara
+                </span>
+
             </a>
 
+
+            <!-- WHATSAPP -->
 
             <a
                 class="action-btn"
                 href="https://wa.me/905535964626"
                 target="_blank"
             >
-                WhatsApp
+
+                <span class="icon">◉</span>
+
+                <span>
+                    WhatsApp
+                </span>
+
             </a>
 
+
+            <!-- KONUM -->
 
             <a
                 class="action-btn"
                 href="https://www.google.com/maps?q=36.546513015199764,32.001413146036626"
                 target="_blank"
             >
-                Konuma Git
+
+                <span class="icon">⌖</span>
+
+                <span>
+                    Konuma Git
+                </span>
+
             </a>
 
+
+            <!-- IBAN -->
 
             <button
                 class="action-btn"
                 onclick="copyIBAN()"
             >
-                IBAN Kopyala
+
+                <span class="icon">₺</span>
+
+                <span>
+                    IBAN Kopyala
+                </span>
+
             </button>
 
 
+            <!-- WEB -->
+
             <a
                 class="action-btn"
                 href="#"
                 onclick="return false;"
             >
-                Web Sitesi
+
+                <span class="icon">⌂</span>
+
+                <span>
+                    Web Sitesi
+                </span>
+
             </a>
 
 
+            <!-- SOSYAL MEDYA -->
+
             <a
                 class="action-btn"
                 href="#"
                 onclick="return false;"
             >
-                Sosyal Medya
+
+                <span class="icon">◎</span>
+
+                <span>
+                    Sosyal Medya
+                </span>
+
             </a>
 
 
+            <!-- KATALOG -->
+
             <a
                 class="action-btn"
                 href="#"
                 onclick="return false;"
             >
-                Dijital Katalog
+
+                <span class="icon">▤</span>
+
+                <span>
+                    Dijital Katalog
+                </span>
+
             </a>
 
         </div>
 
 
-        <!-- GOOGLE -->
+
+        <!-- =================================================
+             GOOGLE YORUM
+        ================================================= -->
 
         <div class="review">
 
@@ -1247,17 +1324,26 @@ body{
                 href="#"
                 onclick="return false;"
             >
-                ★ Google'da Bizi Değerlendirin
+
+                <span>★</span>
+
+                Google'da Bizi Değerlendirin
+
             </a>
 
         </div>
 
 
-        <!-- FOOTER -->
+
+        <!-- =================================================
+             FOOTER
+        ================================================= -->
 
         <div class="footer">
 
-            <strong>XLINE REKLAM</strong>
+            <strong>
+                XLINE REKLAM
+            </strong>
 
             <br>
 
@@ -1315,7 +1401,9 @@ function copyIBAN(){
             .writeText(iban)
             .then(function(){
 
-                alert("IBAN kopyalandı.");
+                alert(
+                    "IBAN kopyalandı."
+                );
 
             })
             .catch(function(){
@@ -1355,7 +1443,9 @@ function fallbackCopy(text){
 
         document.execCommand("copy");
 
-        alert("IBAN kopyalandı.");
+        alert(
+            "IBAN kopyalandı."
+        );
 
     }catch(e){
 
