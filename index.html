@@ -2,321 +2,1242 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>XLine Reklam | Refik ÖZÇAKMAK</title>
+<title>XLine Reklam | Refik ÖZÇAKMAK</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#090909;
+    color:#fff;
+    padding:25px 15px;
+}
+
+
+/* ==================================================
+   AÇILIŞ EKRANI
+================================================== */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(220,0,0,.16) 0%,
+        rgba(10,10,10,.97) 45%,
+        #030303 100%
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#intro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+
+.intro-content{
+    width:100%;
+    max-width:430px;
+
+    text-align:center;
+
+    position:relative;
+
+    padding:20px;
+}
+
+
+/* ARKA PLAN IŞIĞI */
+
+.intro-glow{
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:rgba(210,0,0,.16);
+
+    filter:blur(75px);
+
+    animation:pulseGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+
+    0%,100%{
+        transform:translate(-50%,-50%) scale(.8);
+        opacity:.5;
+    }
+
+    50%{
+        transform:translate(-50%,-50%) scale(1.2);
+        opacity:1;
+    }
+
+}
+
+
+/* XLINE */
+
+.intro-xline{
+    position:relative;
+    z-index:5;
+
+    font-size:58px;
+
+    font-weight:900;
+
+    letter-spacing:7px;
+
+    opacity:0;
+
+    transform:scale(.65);
+
+    animation:xlineIn .8s ease forwards;
+}
+
+.intro-xline span{
+    color:#e00000;
+}
+
+@keyframes xlineIn{
+
+    0%{
+        opacity:0;
+        transform:scale(.65);
+        filter:blur(10px);
+    }
+
+    70%{
+        opacity:1;
+        transform:scale(1.08);
+        filter:blur(0);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* KIRMIZI ÇİZGİ */
+
+.intro-line{
+
+    position:relative;
+    z-index:5;
+
+    width:0;
+
+    height:2px;
+
+    margin:15px auto 22px;
+
+    background:#e00000;
+
+    box-shadow:
+        0 0 15px rgba(230,0,0,.9);
+
+    animation:
+        lineIn .5s ease .6s forwards;
+}
+
+@keyframes lineIn{
+
+    to{
+        width:170px;
+    }
+
+}
+
+
+/* ==================================================
+   MARKALAR
+================================================== */
+
+.brand-container{
+
+    position:relative;
+    z-index:5;
+
+    width:100%;
+
+    min-height:145px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+}
+
+
+/*
+   ÖNEMLİ:
+   Logolar varsayılan olarak görünür.
+   Animasyon sadece transform/opacity efektidir.
+*/
+
+.brand{
+
+    width:105px;
+    height:105px;
+
+    object-fit:contain;
+
+    display:block;
+
+    opacity:1;
+
+    transform:translateY(0) scale(1);
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,.08));
+
+}
+
+
+/* Sol logo */
+
+.brand.grasotre{
+
+    animation:
+        grasotreIn .75s cubic-bezier(.2,.9,.2,1) .8s both;
+
+}
+
+@keyframes grasotreIn{
+
+    0%{
+        opacity:0;
+        transform:
+            translateX(-100px)
+            scale(.55)
+            rotate(-10deg);
+    }
+
+    70%{
+        opacity:1;
+        transform:
+            translateX(8px)
+            scale(1.08)
+            rotate(1deg);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateX(0)
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+/* Orta logo */
+
+.brand.promx{
+
+    animation:
+        promxIn .75s cubic-bezier(.2,.9,.2,1) 1.05s both;
+
+}
+
+@keyframes promxIn{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(90px)
+            scale(.55);
+    }
+
+    70%{
+        opacity:1;
+        transform:
+            translateY(-8px)
+            scale(1.08);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* Sağ logo */
+
+.brand.xmat{
+
+    animation:
+        xmatIn .75s cubic-bezier(.2,.9,.2,1) 1.3s both;
+
+}
+
+@keyframes xmatIn{
+
+    0%{
+        opacity:0;
+        transform:
+            translateX(100px)
+            scale(.55)
+            rotate(10deg);
+    }
+
+    70%{
+        opacity:1;
+        transform:
+            translateX(-8px)
+            scale(1.08)
+            rotate(-1deg);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateX(0)
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+/* GROUP */
+
+.group-title{
+
+    position:relative;
+
+    z-index:5;
+
+    margin-top:3px;
+
+    font-size:13px;
+
+    color:#888;
+
+    letter-spacing:6px;
+
+    opacity:0;
+
+    animation:
+        groupIn .6s ease 1.9s forwards;
+
+}
+
+@keyframes groupIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px);
+        letter-spacing:11px;
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+        letter-spacing:6px;
+    }
+
+}
+
+
+/* ALT YAZI */
+
+.welcome{
+
+    position:relative;
+
+    z-index:5;
+
+    margin-top:22px;
+
+    font-size:10px;
+
+    letter-spacing:4px;
+
+    color:#555;
+
+    opacity:0;
+
+    animation:
+        welcomeIn .6s ease 2.25s forwards;
+
+}
+
+@keyframes welcomeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* TARAMA ÇİZGİSİ */
+
+.scan-line{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,0,0,.7),
+            transparent
+        );
+
+    animation:
+        scan 2.3s linear infinite;
+
+}
+
+@keyframes scan{
+
+    0%{
+        top:10%;
+        opacity:0;
+    }
+
+    20%{
+        opacity:.7;
+    }
+
+    50%{
+        opacity:.2;
+    }
+
+    80%{
+        opacity:.7;
+    }
+
+    100%{
+        top:90%;
+        opacity:0;
+    }
+
+}
+
+
+/* ==================================================
+   ANA KART
+================================================== */
+
+.card{
+
+    max-width:430px;
+
+    margin:0 auto;
+
+    background:#1c1c1c;
+
+    border-radius:28px;
+
+    padding:30px 22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.45);
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    margin-bottom:5px;
+
+}
+
+.logo span{
+
+    color:#e00000;
+
+}
+
+
+.company{
+
+    color:#aaa;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* PROFİL */
+
+.profile{
+
+    width:110px;
+
+    height:110px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    background:#333;
+
+    border:3px solid #e00000;
+
+}
+
+.profile img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+h1{
+
+    margin:0;
+
+    font-size:27px;
+
+}
+
+
+.title{
+
+    margin-top:7px;
+
+    color:#aaa;
+
+    font-size:15px;
+
+    margin-bottom:22px;
+
+}
+
+
+/* HIZLI BUTONLAR */
+
+.quick-actions{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+.quick{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:14px 8px;
+
+    border-radius:14px;
+
+    background:#292929;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    border:1px solid #3b3b3b;
+
+}
+
+
+.quick.call{
+
+    background:#d90000;
+
+    border-color:#d90000;
+
+}
+
+
+/* HİZMET BANDI */
+
+.service-window{
+
+    overflow:hidden;
+
+    margin:
+        10px -22px 22px;
+
+    border-top:
+        1px solid #303030;
+
+    border-bottom:
+        1px solid #303030;
+
+    background:#111;
+
+    padding:11px 0;
+
+}
+
+
+.service-track{
+
+    display:flex;
+
+    width:max-content;
+
+    animation:
+        serviceMove 18s linear infinite;
+
+}
+
+
+.service{
+
+    display:flex;
+
+    align-items:center;
+
+    white-space:nowrap;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    color:#aaa;
+
+    letter-spacing:1px;
+
+    padding:0 22px;
+
+}
+
+
+.service::after{
+
+    content:"•";
+
+    color:#e00000;
+
+    margin-left:44px;
+
+}
+
+
+@keyframes serviceMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+
+/* BUTONLAR */
+
+.buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+.button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:#292929;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    border:1px solid #3b3b3b;
+
+    transition:.2s ease;
+
+}
+
+
+.button:hover{
+
+    transform:translateY(-2px);
+
+    background:#333;
+
+}
+
+
+.highlight{
+
+    background:#d90000;
+
+    border-color:#d90000;
+
+}
+
+
+/* GOOGLE */
+
+.google-review{
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    background:#161616;
+
+    border:1px solid #303030;
+
+    color:#ddd;
+
+    text-decoration:none;
+
+    display:block;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+}
+
+
+.footer{
+
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:11px;
+
+}
+
+
+/* MOBİL */
+
+@media(max-width:380px){
+
+    .intro-xline{
+        font-size:48px;
+    }
+
+    .brand-container{
+        gap:2px;
+    }
+
+    .brand{
+        width:88px;
+        height:88px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     AÇILIŞ
+================================================== -->
+
+<div id="intro">
+
+    <div class="scan-line"></div>
+
+    <div class="intro-content">
+
+        <div class="intro-glow"></div>
+
+
+        <div class="intro-xline">
+            X<span>LINE</span>
+        </div>
+
+
+        <div class="intro-line"></div>
+
+
+        <div class="brand-container">
+
+            <img
+                src="./grasotre.png"
+                class="brand grasotre"
+                alt="Grasotre">
+
+            <img
+                src="./promx.png"
+                class="brand promx"
+                alt="PromX">
+
+            <img
+                src="./xmat.png"
+                class="brand xmat"
+                alt="XMat">
+
+        </div>
+
+
+        <div class="group-title">
+            XLINE GROUP
+        </div>
+
+
+        <div class="welcome">
+            BUSINESS SMART CARD
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     ANA KART
+================================================== -->
+
+<div class="card">
+
+
+    <div class="logo">
+        X<span>LINE</span>
+    </div>
+
+
+    <div class="company">
+        TANITIM REKLAM
+    </div>
+
+
+    <div class="profile">
+
+        <img
+            src="./xlinelogo.png"
+            alt="XLine Reklam">
+
+    </div>
+
+
+    <h1>
+        Refik ÖZÇAKMAK
+    </h1>
+
+
+    <div class="title">
+        XLine Reklam
+    </div>
+
+
+    <!-- HIZLI İŞLEMLER -->
+
+    <div class="quick-actions">
+
+        <a
+            class="quick call"
+            href="tel:+905535964626">
+
+            📞 Hemen Ara
+
+        </a>
+
+
+        <a
+            class="quick"
+            href="javascript:void(0)"
+            onclick="saveContact()">
+
+            👤 Rehbere Kaydet
+
+        </a>
+
+    </div>
+
+
+    <!-- HİZMETLER -->
+
+    <div class="service-window">
+
+        <div class="service-track">
+
+
+            <div class="service">
+                TABELA & REKLAM
+            </div>
+
+
+            <div class="service">
+                MATBAA
+            </div>
+
+
+            <div class="service">
+                PROMOSYON
+            </div>
+
+
+            <div class="service">
+                TEKSTİL BASKI
+            </div>
+
+
+            <div class="service">
+                LED EKRAN
+            </div>
+
+
+            <div class="service">
+                TABELA & REKLAM
+            </div>
+
+
+            <div class="service">
+                MATBAA
+            </div>
+
+
+            <div class="service">
+                PROMOSYON
+            </div>
+
+
+            <div class="service">
+                TEKSTİL BASKI
+            </div>
+
+
+            <div class="service">
+                LED EKRAN
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- BUTONLAR -->
+
+    <div class="buttons">
+
+
+        <a
+            class="button highlight"
+            href="tel:+905535964626">
+
+            📞 Hemen Ara
+
+        </a>
+
+
+        <a
+            class="button"
+            href="https://wa.me/905535964626">
+
+            💬 WhatsApp
+
+        </a>
+
+
+        <a
+            class="button"
+            href="https://www.google.com/maps/dir/?api=1&destination=36.546513015199764,32.001413146036626"
+            target="_blank">
+
+            📍 Konuma Git
+
+        </a>
+
+
+        <a
+            class="button"
+            href="javascript:void(0)"
+            onclick="copyIBAN()">
+
+            🏦 IBAN'ı Kopyala
+
+        </a>
+
+
+        <a
+            class="button"
+            href="#">
+
+            🌐 Web Sitesi
+
+        </a>
+
+
+        <a
+            class="button"
+            href="#">
+
+            📱 Sosyal Medya
+
+        </a>
+
+
+        <a
+            class="button"
+            href="#">
+
+            📖 Dijital Katalog
+
+        </a>
+
+
+    </div>
+
+
+    <!-- GOOGLE -->
+
+    <a
+        class="google-review"
+        href="#">
+
+        ⭐ Google'da Değerlendir
+
+    </a>
+
+
+    <div class="footer">
+
+        XLine Reklam • Business Smart Card
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* ==================================================
+   AÇILIŞI KAPAT
+================================================== */
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        const intro =
+            document.getElementById("intro");
+
+        if(intro){
+
+            intro.classList.add("hide");
+
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-        }
+    },3300);
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #090909;
-            color: #fff;
-            padding: 25px 15px;
-        }
+});
 
-        /* =========================
-           AÇILIŞ EKRANI
-        ========================= */
 
-        #intro {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background:
-                radial-gradient(circle at center,
-                rgba(210,0,0,0.14) 0%,
-                rgba(0,0,0,0.96) 42%,
-                #050505 100%);
+/* ==================================================
+   IBAN
+================================================== */
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+function copyIBAN(){
 
-            overflow: hidden;
+    const iban =
+        "TR180015700000000070583687";
 
-            opacity: 1;
-            visibility: visible;
 
-            transition:
-                opacity 0.8s ease,
-                visibility 0.8s ease;
-        }
+    if(navigator.clipboard){
 
-        #intro.hide {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        navigator.clipboard
+        .writeText(iban)
+        .then(function(){
 
-        .intro-content {
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            position: relative;
-        }
+            alert("IBAN kopyalandı.");
 
-        /* Hafif arka plan ışığı */
+        })
+        .catch(function(){
 
-        .intro-glow {
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            alert("IBAN: " + iban);
 
-            background: rgba(220,0,0,0.18);
-            filter: blur(80px);
-            border-radius: 50%;
+        });
 
-            animation: glowPulse 2.5s ease-in-out infinite;
-        }
+    }else{
 
-        @keyframes glowPulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0.5;
+        alert("IBAN: " + iban);
+
+    }
+
+}
+
+
+/* ==================================================
+   REHBER
+================================================== */
+
+function saveContact(){
+
+    const vcard =
+`BEGIN:VCARD
+VERSION:3.0
+FN:Refik ÖZÇAKMAK
+ORG:XLine Reklam
+TITLE:XLine Reklam
+TEL;TYPE=CELL:+905535964626
+END:VCARD`;
+
+
+    const blob =
+        new Blob(
+            [vcard],
+            {
+                type:
+                "text/vcard;charset=utf-8"
             }
+        );
 
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 1;
-            }
-        }
 
-        /* XLINE */
+    const url =
+        URL.createObjectURL(blob);
 
-        .intro-xline {
-            position: relative;
-            z-index: 2;
 
-            font-size: 58px;
-            font-weight: 900;
-            letter-spacing: 7px;
+    const link =
+        document.createElement("a");
 
-            opacity: 0;
-            transform: scale(0.65);
 
-            animation: xlineEnter 0.8s cubic-bezier(.2,.8,.2,1) 0.1s forwards;
-        }
+    link.href=url;
 
-        .intro-xline span {
-            color: #e00000;
-        }
 
-        @keyframes xlineEnter {
-            0% {
-                opacity: 0;
-                transform: scale(0.65);
-                filter: blur(12px);
-            }
+    link.download =
+        "Refik-Ozcakmak-XLine.vcf";
 
-            70% {
-                opacity: 1;
-                transform: scale(1.08);
-                filter: blur(0);
-            }
 
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+    document.body.appendChild(link);
 
-        .intro-line {
-            position: relative;
-            z-index: 2;
 
-            width: 0;
-            height: 2px;
-            margin: 14px auto 28px;
+    link.click();
 
-            background: #e00000;
 
-            box-shadow: 0 0 15px rgba(230,0,0,0.9);
+    document.body.removeChild(link);
 
-            animation: lineGrow 0.5s ease 0.75s forwards;
-        }
 
-        @keyframes lineGrow {
-            to {
-                width: 160px;
-            }
-        }
+    setTimeout(function(){
 
-        /* ALT MARKALAR */
+        URL.revokeObjectURL(url);
 
-        .brand-container {
-            position: relative;
-            z-index: 3;
+    },1000);
 
-            width: 100%;
-            min-height: 170px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-        }
+</script>
 
-        .brand {
-            width: 105px;
-            height: 115px;
-
-            object-fit: contain;
-
-            opacity: 0;
-            transform: scale(0.45);
-
-            filter:
-                drop-shadow(0 0 0 rgba(255,0,0,0));
-
-            transition: filter 0.3s ease;
-        }
-
-        .brand:hover {
-            filter:
-                drop-shadow(0 0 18px rgba(255,0,0,0.6));
-        }
-
-        .brand.grasotre {
-            animation:
-                brandLeft 0.65s cubic-bezier(.2,.9,.2,1) 0.95s forwards;
-        }
-
-        .brand.promx {
-            animation:
-                brandCenter 0.65s cubic-bezier(.2,.9,.2,1) 1.2s forwards;
-        }
-
-        .brand.xmat {
-            animation:
-                brandRight 0.65s cubic-bezier(.2,.9,.2,1) 1.45s forwards;
-        }
-
-        @keyframes brandLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-90px) scale(0.45) rotate(-8deg);
-            }
-
-            70% {
-                opacity: 1;
-                transform: translateX(8px) scale(1.06) rotate(1deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0);
-            }
-        }
-
-        @keyframes brandCenter {
-            0% {
-                opacity: 0;
-                transform: translateY(70px) scale(0.45);
-            }
-
-            70% {
-                opacity: 1;
-                transform: translateY(-7px) scale(1.06);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes brandRight {
-            0% {
-                opacity: 0;
-                transform: translateX(90px) scale(0.45) rotate(8deg);
-            }
-
-            70% {
-                opacity: 1;
-                transform: translateX(-8px) scale(1.06) rotate(-1deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0);
-            }
-        }
-
-        /* GROUP */
-
-        .group-title {
-            position: relative;
-            z-index: 3;
-
-            margin-top: 12px;
-
-            font-size: 13px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-
-            color: #888;
-
-            opacity: 0;
-
-            animation:
-                groupEnter 0.7s ease 1.9s forwards;
-        }
-
-        @keyframes groupEnter {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-                letter-spacing: 10px;
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                letter-spacing: 6px;
-            }
-        }
-
-        .welcome {
-            position: relative;
-            z-index: 3;
-
-            margin-top: 25px;
-
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: #666;
-
-            opacity: 0;
-
-            animation:
-                welcomeEnter 0.6s ease 2.35s forwards;
-        }
-
-        @keyframes welcomeEnter {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Tarama çizgisi */
-
-        .scan-line {
+</body>
+</html>
 ```
