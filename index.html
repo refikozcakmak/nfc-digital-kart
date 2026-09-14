@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -6,182 +7,1238 @@
 
     <title>XLine Reklam | Refik ÖZÇAKMAK</title>
 
+    <meta name="theme-color" content="#080808">
+
     <style>
+
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: #111;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(220,0,0,0.16), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(255,255,255,0.04), transparent 30%),
+                #070707;
             color: #fff;
-            padding: 25px 15px;
+            overflow-x: hidden;
         }
 
-        .card {
-            max-width: 430px;
-            margin: 0 auto;
-            background: #1c1c1c;
-            border-radius: 28px;
-            padding: 30px 22px;
+
+        /* =====================================================
+           AÇILIŞ EKRANI
+        ===================================================== */
+
+        #intro {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(circle at center, rgba(220,0,0,0.12), transparent 40%),
+                #050505;
+
+            animation: introOut 1s ease 2.7s forwards;
+            pointer-events: all;
+        }
+
+        .intro-content {
             text-align: center;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.45);
+            animation: introLogo 1.4s cubic-bezier(.2,.8,.2,1) forwards;
         }
 
-        .logo {
-            font-size: 34px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+        .intro-logo {
+            width: 115px;
+            height: 115px;
+            margin: 0 auto 28px;
+
+            border-radius: 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #101010;
+            border: 1px solid rgba(255,255,255,0.1);
+
+            box-shadow:
+                0 0 0 1px rgba(220,0,0,0.15),
+                0 20px 70px rgba(0,0,0,0.8),
+                0 0 50px rgba(220,0,0,0.12);
+
+            overflow: hidden;
         }
 
-        .logo span {
+        .intro-logo img {
+            width: 82%;
+            height: 82%;
+            object-fit: contain;
+        }
+
+        .intro-company {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 9px;
+        }
+
+        .intro-company span {
             color: #e00000;
         }
 
-        .company {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 25px;
+        .intro-subtitle {
+            color: #999;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 13px;
         }
 
-        .profile {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 18px;
+        .intro-welcome {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .intro-line {
+            width: 55px;
+            height: 2px;
+            margin: 22px auto 0;
+            background: #e00000;
+            box-shadow: 0 0 15px rgba(224,0,0,0.7);
+            animation: lineGrow 1.2s ease forwards;
+        }
+
+        @keyframes introLogo {
+            0% {
+                opacity: 0;
+                transform: scale(.82) translateY(15px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes lineGrow {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+
+            to {
+                width: 55px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes introOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+
+        /* =====================================================
+           ANA SAYFA
+        ===================================================== */
+
+        .page {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 18px 14px 35px;
+
+            opacity: 0;
+            transform: translateY(15px);
+
+            animation: pageIn 1s ease 2.9s forwards;
+        }
+
+        @keyframes pageIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =====================================================
+           ÜST MARKA
+        ===================================================== */
+
+        .top-brand {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 8px 5px 17px;
+        }
+
+        .brand-name {
+            font-weight: 900;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .brand-name span {
+            color: #e00000;
+        }
+
+        .online {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            color: #777;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .online-dot {
+            width: 6px;
+            height: 6px;
+            background: #31d158;
             border-radius: 50%;
+            box-shadow: 0 0 8px rgba(49,209,88,.8);
+        }
+
+
+        /* =====================================================
+           ANA KART
+        ===================================================== */
+
+        .card {
+            position: relative;
             overflow: hidden;
-            background: #333;
-            border: 3px solid #e00000;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.018)
+                );
+
+            border: 1px solid rgba(255,255,255,0.09);
+
+            border-radius: 30px;
+
+            padding: 28px 20px 24px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.65),
+                inset 0 1px 0 rgba(255,255,255,.05);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            top: -100px;
+            right: -90px;
+
+            background: rgba(220,0,0,.15);
+            filter: blur(70px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           PROFİL
+        ===================================================== */
+
+        .profile {
+            position: relative;
+
+            width: 112px;
+            height: 112px;
+
+            margin: 0 auto 17px;
+
+            border-radius: 50%;
+
+            padding: 4px;
+
+            background:
+                linear-gradient(135deg, #ff0000, #700000, #ff0000);
+
+            box-shadow:
+                0 10px 40px rgba(220,0,0,.25);
+        }
+
+        .profile-inner {
+            width: 100%;
+            height: 100%;
+
+            border-radius: 50%;
+
+            background: #0c0c0c;
+
+            overflow: hidden;
         }
 
         .profile img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 8px;
         }
 
         h1 {
-            margin: 0;
-            font-size: 27px;
+            text-align: center;
+            font-size: 28px;
+            line-height: 1.1;
+            margin-bottom: 8px;
         }
 
         .title {
-            margin-top: 7px;
-            color: #aaa;
-            font-size: 15px;
-            margin-bottom: 28px;
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
         }
+
+
+        /* =====================================================
+           HIZLI İLETİŞİM
+        ===================================================== */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .quick {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            min-height: 52px;
+
+            border-radius: 15px;
+
+            text-decoration: none;
+            color: #fff;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            background: rgba(255,255,255,.055);
+            border: 1px solid rgba(255,255,255,.08);
+
+            transition:
+                transform .2s ease,
+                background .2s ease,
+                border-color .2s ease;
+        }
+
+        .quick:hover,
+        .quick:active {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,.09);
+            border-color: rgba(255,255,255,.15);
+        }
+
+        .quick-main {
+            background: #d90000;
+            border-color: #d90000;
+
+            box-shadow: 0 8px 25px rgba(217,0,0,.2);
+        }
+
+        .quick-main:hover,
+        .quick-main:active {
+            background: #f00000;
+        }
+
+
+        /* =====================================================
+           BANNER ALANI
+        ===================================================== */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: 26px 2px 10px;
+
+            color: #777;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title span:last-child {
+            color: #e00000;
+            font-size: 9px;
+        }
+
+        .banner-window {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 18px;
+        }
+
+        .banner-track {
+            display: flex;
+            gap: 10px;
+
+            width: max-content;
+
+            animation: bannerMove 22s linear infinite;
+        }
+
+        .banner-track:hover {
+            animation-play-state: paused;
+        }
+
+        .banner {
+            position: relative;
+
+            width: 245px;
+            height: 115px;
+
+            flex-shrink: 0;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #171717,
+                    #080808
+                );
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            padding: 16px;
+        }
+
+        .banner::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.85),
+                    transparent 65%
+                );
+        }
+
+        .banner-red {
+            background:
+                radial-gradient(circle at top right, rgba(255,0,0,.45), transparent 45%),
+                #111;
+        }
+
+        .banner-white {
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,.15), transparent 45%),
+                #151515;
+        }
+
+        .banner-number {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+
+            color: rgba(255,255,255,.2);
+
+            font-size: 26px;
+            font-weight: 900;
+
+            z-index: 2;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .banner small {
+            display: block;
+
+            color: #e00000;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 4px;
+        }
+
+        .banner h3 {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+
+        .banner p {
+            color: #aaa;
+            font-size: 10px;
+        }
+
+        @keyframes bannerMove {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        /* =====================================================
+           TÜM BUTONLAR
+        ===================================================== */
 
         .buttons {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 9px;
+            margin-top: 15px;
         }
 
         .button {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            min-height: 56px;
+
+            padding: 13px 16px;
+
+            border-radius: 16px;
+
+            background: rgba(255,255,255,.045);
+
+            color: #fff;
+            text-decoration: none;
+
+            border: 1px solid rgba(255,255,255,.075);
+
+            transition:
+                transform .2s ease,
+                background .2s ease,
+                border-color .2s ease;
+        }
+
+        .button:hover,
+        .button:active {
+            transform: translateX(3px);
+            background: rgba(255,255,255,.075);
+            border-color: rgba(255,255,255,.14);
+        }
+
+        .button-icon {
+            width: 38px;
+            height: 38px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 16px;
-            border-radius: 14px;
-            background: #292929;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            border: 1px solid #3b3b3b;
+
+            margin-right: 12px;
+
+            border-radius: 11px;
+
+            background: rgba(255,255,255,.07);
+
+            font-size: 17px;
         }
 
-        .highlight {
-            background: #d90000;
-            border-color: #d90000;
+        .button-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
+
+        .button-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .button-subtitle {
+            color: #777;
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        .arrow {
+            margin-left: auto;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .google-button {
+            border-color: rgba(255,190,0,.18);
+        }
+
+        .google-button .button-icon {
+            background: rgba(255,190,0,.1);
+        }
+
+
+        /* =====================================================
+           GOOGLE DEĞERLENDİRME
+        ===================================================== */
+
+        .review-box {
+            margin-top: 16px;
+
+            padding: 18px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.06),
+                    rgba(255,255,255,.025)
+                );
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            text-align: center;
+        }
+
+        .stars {
+            color: #ffc400;
+            letter-spacing: 3px;
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .review-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .review-text {
+            color: #777;
+            font-size: 10px;
+            margin-bottom: 13px;
+        }
+
+        .review-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding: 0 18px;
+
+            border-radius: 12px;
+
+            background: #fff;
+            color: #111;
+
+            text-decoration: none;
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
         .footer {
-            margin-top: 25px;
-            color: #666;
-            font-size: 11px;
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #444;
+
+            font-size: 9px;
+            letter-spacing: 1px;
         }
+
+        .footer strong {
+            color: #666;
+        }
+
     </style>
 </head>
 
+
 <body>
 
-    <div class="card">
 
-        <div class="logo">
-            X<span>LINE</span>
-        </div>
+<!-- =========================================================
+     3 SANİYELİK AÇILIŞ
+========================================================= -->
 
-        <div class="company">
-            TANITIM REKLAM
-        </div>
+<div id="intro">
 
-        <div class="profile">
+    <div class="intro-content">
+
+        <div class="intro-logo">
             <img src="./xlinelogo.png" alt="XLine Reklam">
         </div>
 
-        <h1>Refik ÖZÇAKMAK</h1>
-
-        <div class="title">
-            XLine Reklam
+        <div class="intro-company">
+            X<span>Line</span> Reklam
         </div>
 
-        <div class="buttons">
-
-            <a class="button highlight" href="tel:+905535964626">
-                📞 Beni Ara
-            </a>
-
-            <a class="button" href="https://wa.me/905535964626">
-                💬 WhatsApp
-            </a>
-
-            <a class="button"
-               href="https://www.google.com/maps/dir/?api=1&destination=36.546513015199764,32.001413146036626"
-               target="_blank">
-                📍 Konuma Git
-            </a>
-
-            <a class="button" href="javascript:void(0)" onclick="copyIBAN()">
-                🏦 IBAN'ı Kopyala
-            </a>
-
-            <a class="button" href="#">
-                🌐 Web Sitesi
-            </a>
-
-            <a class="button" href="#">
-                📱 Sosyal Medya
-            </a>
-
-            <a class="button" href="#">
-                📖 Katalog
-            </a>
-
+        <div class="intro-subtitle">
+            Business Smart Card
         </div>
 
-        <div class="footer">
-            XLine Reklam • Dijital Kart
+        <div class="intro-welcome">
+            Hoşgeldiniz
+        </div>
+
+        <div class="intro-line"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ANA SAYFA
+========================================================= -->
+
+<main class="page">
+
+
+    <div class="top-brand">
+
+        <div class="brand-name">
+            X<span>LINE</span>
+        </div>
+
+        <div class="online">
+            <div class="online-dot"></div>
+            Dijital Kart
         </div>
 
     </div>
 
-    <script>
-        function copyIBAN() {
-            const iban = "TR180015700000000070583687";
 
-            navigator.clipboard.writeText(iban).then(function() {
+
+    <section class="card">
+
+
+        <!-- PROFİL -->
+
+        <div class="profile">
+
+            <div class="profile-inner">
+
+                <img src="./xlinelogo.png"
+                     alt="XLine Reklam">
+
+            </div>
+
+        </div>
+
+
+        <h1>
+            Refik ÖZÇAKMAK
+        </h1>
+
+        <div class="title">
+            XLine Reklam • Tanıtım & Reklam
+        </div>
+
+
+
+        <!-- HIZLI BUTONLAR -->
+
+        <div class="quick-actions">
+
+            <a class="quick quick-main"
+               href="tel:+905535964626">
+
+                📞
+                Beni Ara
+
+            </a>
+
+
+            <a class="quick"
+               href="https://wa.me/905535964626"
+               target="_blank">
+
+                💬
+                WhatsApp
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HAREKETLİ BANNERLAR
+        ================================================= -->
+
+        <div class="section-title">
+
+            <span>XLine Hizmetleri</span>
+
+            <span>Kaydırılıyor</span>
+
+        </div>
+
+
+        <div class="banner-window">
+
+            <div class="banner-track">
+
+
+                <div class="banner banner-red">
+
+                    <div class="banner-number">
+                        01
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>OUTDOOR</small>
+
+                        <h3>Tabela & Reklam</h3>
+
+                        <p>Markanızı görünür hale getiriyoruz.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner">
+
+                    <div class="banner-number">
+                        02
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>PRINT</small>
+
+                        <h3>Matbaa</h3>
+
+                        <p>Kartvizit, broşür, katalog ve daha fazlası.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner banner-white">
+
+                    <div class="banner-number">
+                        03
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>PROMOTION</small>
+
+                        <h3>Promosyon</h3>
+
+                        <p>Kurumsal hediyeler ve özel ürünler.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner banner-red">
+
+                    <div class="banner-number">
+                        04
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>TEXTILE</small>
+
+                        <h3>Tekstil Baskı</h3>
+
+                        <p>Profesyonel tekstil baskı çözümleri.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DÖNGÜ İÇİN TEKRAR -->
+
+                <div class="banner banner-red">
+
+                    <div class="banner-number">
+                        01
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>OUTDOOR</small>
+
+                        <h3>Tabela & Reklam</h3>
+
+                        <p>Markanızı görünür hale getiriyoruz.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner">
+
+                    <div class="banner-number">
+                        02
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>PRINT</small>
+
+                        <h3>Matbaa</h3>
+
+                        <p>Kartvizit, broşür, katalog ve daha fazlası.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner banner-white">
+
+                    <div class="banner-number">
+                        03
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>PROMOTION</small>
+
+                        <h3>Promosyon</h3>
+
+                        <p>Kurumsal hediyeler ve özel ürünler.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner banner-red">
+
+                    <div class="banner-number">
+                        04
+                    </div>
+
+                    <div class="banner-content">
+
+                        <small>TEXTILE</small>
+
+                        <h3>Tekstil Baskı</h3>
+
+                        <p>Profesyonel tekstil baskı çözümleri.</p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DİĞER BUTONLAR
+        ================================================= -->
+
+        <div class="buttons">
+
+
+            <a class="button"
+               href="https://www.google.com/maps/dir/?api=1&destination=36.546513015199764,32.001413146036626"
+               target="_blank">
+
+                <div class="button-icon">
+                    📍
+                </div>
+
+                <div class="button-text">
+
+                    <div class="button-title">
+                        Konuma Git
+                    </div>
+
+                    <div class="button-subtitle">
+                        XLine Reklam konumunu aç
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </a>
+
+
+
+            <a class="button"
+               href="javascript:void(0)"
+               onclick="copyIBAN()">
+
+                <div class="button-icon">
+                    🏦
+                </div>
+
+                <div class="button-text">
+
+                    <div class="button-title">
+                        IBAN'ı Kopyala
+                    </div>
+
+                    <div class="button-subtitle">
+                        Ödeme bilgilerini kopyala
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </a>
+
+
+
+            <a class="button"
+               href="#">
+
+                <div class="button-icon">
+                    🌐
+                </div>
+
+                <div class="button-text">
+
+                    <div class="button-title">
+                        Web Sitesi
+                    </div>
+
+                    <div class="button-subtitle">
+                        XLine Reklam web sitesi
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </a>
+
+
+
+            <a class="button"
+               href="#">
+
+                <div class="button-icon">
+                    📱
+                </div>
+
+                <div class="button-text">
+
+                    <div class="button-title">
+                        Sosyal Medya
+                    </div>
+
+                    <div class="button-subtitle">
+                        Instagram ve sosyal medya
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </a>
+
+
+
+            <a class="button"
+               href="#">
+
+                <div class="button-icon">
+                    📖
+                </div>
+
+                <div class="button-text">
+
+                    <div class="button-title">
+                        Dijital Katalog
+                    </div>
+
+                    <div class="button-subtitle">
+                        Ürün ve hizmet kataloğunu incele
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             GOOGLE DEĞERLENDİRME
+        ================================================= -->
+
+        <div class="review-box">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <div class="review-title">
+                XLine Reklam'ı değerlendirin
+            </div>
+
+            <div class="review-text">
+                Hizmetimizden memnun kaldıysanız
+                Google'da deneyiminizi paylaşabilirsiniz.
+            </div>
+
+
+            <!--
+                BURAYA XLINE'IN GOOGLE YORUM LİNKİ GELECEK.
+                Şimdilik # bırakıldı.
+            -->
+
+            <a class="review-link"
+               href="#"
+               target="_blank">
+
+                ⭐ Google'da Değerlendir
+
+            </a>
+
+        </div>
+
+
+
+        <div class="footer">
+
+            <strong>XLine Reklam</strong>
+            • Business Smart Card
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<script>
+
+
+    /* =====================================================
+       IBAN KOPYALAMA
+    ===================================================== */
+
+    function copyIBAN() {
+
+        const iban =
+            "TR180015700000000070583687";
+
+        navigator.clipboard.writeText(iban)
+
+            .then(function() {
+
                 alert("IBAN kopyalandı.");
-            }).catch(function() {
+
+            })
+
+            .catch(function() {
+
                 alert("IBAN: " + iban);
+
             });
-        }
-    </script>
+
+    }
+
+
+    /* =====================================================
+       AÇILIŞ EKRANI
+       3 SANİYE SONRA TAMAMEN KAPAT
+    ===================================================== */
+
+    setTimeout(function() {
+
+        const intro =
+            document.getElementById("intro");
+
+        intro.style.pointerEvents = "none";
+
+    }, 3000);
+
+
+</script>
+
 
 </body>
 </html>
+```
