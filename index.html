@@ -1,138 +1,273 @@
-```css
-/* =====================================================
-   XLINE SİNEMATİK AÇILIŞ
-===================================================== */
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
 
-#intro {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
+    <meta charset="UTF-8">
 
-    overflow: hidden;
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    <meta name="theme-color"
+          content="#050505">
 
-    background: #030303;
-
-    animation: introExit 0.9s cubic-bezier(.7,0,.2,1) 3.15s forwards;
-}
+    <title>
+        XLine Reklam | Refik ÖZÇAKMAK
+    </title>
 
 
-/* Kırmızı atmosfer */
+    <style>
 
-#intro::before {
-    content: "";
-    position: absolute;
+        /* =====================================================
+           GENEL
+        ===================================================== */
 
-    width: 420px;
-    height: 420px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    left: 50%;
-    top: 50%;
+        html {
+            scroll-behavior: smooth;
+        }
 
-    transform: translate(-50%, -50%);
+        body {
 
-    background: radial-gradient(
-        circle,
-        rgba(220,0,0,.18) 0%,
-        rgba(220,0,0,.07) 30%,
-        transparent 70%
-    );
+            min-height: 100vh;
 
-    filter: blur(10px);
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    animation: redPulse 2.8s ease-in-out infinite;
-}
+            background:
 
+                radial-gradient(
+                    circle at 80% 0%,
+                    rgba(220,0,0,.16),
+                    transparent 32%
+                ),
 
-/* Ekranı tarayan ışık */
+                radial-gradient(
+                    circle at 0% 100%,
+                    rgba(255,255,255,.04),
+                    transparent 30%
+                ),
 
-.scan-line {
-    position: absolute;
+                #050505;
 
-    left: -20%;
-    top: 0;
+            color: #fff;
 
-    width: 2px;
-    height: 100%;
-
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(255,0,0,.9),
-        #fff,
-        rgba(255,0,0,.9),
-        transparent
-    );
-
-    box-shadow:
-        0 0 15px rgba(255,0,0,.8),
-        0 0 50px rgba(255,0,0,.5);
-
-    transform: rotate(12deg);
-
-    animation: scan 1.25s cubic-bezier(.4,0,.2,1) .15s forwards;
-}
+            overflow-x: hidden;
+        }
 
 
-/* Yatay ışık çizgisi */
 
-.light-line {
-    position: absolute;
+        /* =====================================================
+           XLINE AÇILIŞ EKRANI
+        ===================================================== */
 
-    width: 0;
-    height: 1px;
+        #intro {
 
-    left: 50%;
-    top: 50%;
+            position: fixed;
 
-    transform: translate(-50%, -50%);
+            inset: 0;
 
-    background: #e00000;
+            z-index: 99999;
 
-    box-shadow:
-        0 0 10px #e00000,
-        0 0 30px rgba(224,0,0,.8);
+            overflow: hidden;
 
-    animation: horizontalLine 1.2s cubic-bezier(.2,.8,.2,1) .35s forwards;
-}
+            display: flex;
 
+            align-items: center;
 
-/* İçerik */
+            justify-content: center;
 
-.intro-content {
-    position: relative;
-    z-index: 5;
+            background: #030303;
 
-    width: 100%;
-
-    text-align: center;
-
-    animation: introContent 1.2s cubic-bezier(.2,.8,.2,1) .15s forwards;
-
-    opacity: 0;
-}
+            animation:
+                introExit
+                .9s
+                cubic-bezier(.7,0,.2,1)
+                3.15s
+                forwards;
+        }
 
 
-/* Logo */
+        /* Kırmızı atmosfer */
 
-.intro-logo {
-    position: relative;
+        #intro::before {
 
-    width: 125px;
-    height: 125px;
+            content: "";
 
-    margin: 0 auto 25px;
+            position: absolute;
 
-    border-radius: 30px;
+            width: 500px;
+            height: 500px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            left: 50%;
+            top: 50%;
 
-    background:
-        linear-gradient(
-            145deg,
+            transform:
+                translate(-50%, -50%);
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(220,0,0,.20),
+                    rgba(220,0,0,.06) 35%,
+                    transparent 70%
+                );
+
+            filter: blur(8px);
+
+            animation:
+                redPulse
+                2.8s
+                ease-in-out
+                infinite;
+        }
+
+
+
+        /* İnce lazer */
+
+        .scan-line {
+
+            position: absolute;
+
+            left: -20%;
+
+            top: -10%;
+
+            width: 2px;
+
+            height: 120%;
+
+            background:
+
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(255,0,0,.9),
+                    #fff,
+                    rgba(255,0,0,.9),
+                    transparent
+                );
+
+            box-shadow:
+
+                0 0 15px
+                rgba(255,0,0,.8),
+
+                0 0 50px
+                rgba(255,0,0,.5);
+
+            transform:
+                rotate(12deg);
+
+            animation:
+                scan
+                1.25s
+                cubic-bezier(.4,0,.2,1)
+                .15s
+                forwards;
+        }
+
+
+
+        /* Ortadan geçen ışık */
+
+        .light-line {
+
+            position: absolute;
+
+            width: 0;
+
+            height: 1px;
+
+            left: 50%;
+
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            background: #e00000;
+
+            box-shadow:
+
+                0 0 10px
+                #e00000,
+
+                0 0 30px
+                rgba(224,0,0,.8);
+
+            animation:
+                horizontalLine
+                1.2s
+                cubic-bezier(.2,.8,.2,1)
+                .35s
+                forwards;
+        }
+
+
+
+        /* Açılış içeriği */
+
+        .intro-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 100%;
+
+            text-align: center;
+
+            opacity: 0;
+
+            animation:
+                introContent
+                1.2s
+                cubic-bezier(.2,.8,.2,1)
+                .15s
+                forwards;
+        }
+
+
+
+        /* Logo kutusu */
+
+        .intro-logo {
+
+            position: relative;
+
+            width: 125px;
+
+            height: 125px;
+
+            margin:
+                0 auto 25px;
+
+            border-radius: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.08),
+                    rgba(255,255,255,.015)
+                );
+
+            border:
+                1px solid
 ```
