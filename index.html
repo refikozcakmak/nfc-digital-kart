@@ -1,11 +1,129 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta
+    name="theme-color"
+    content="#050505"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="XLine Reklam"
+>
 
 <title>XLine Reklam | Business Smart Card</title>
+
+
+<!-- =====================================================
+     PWA MANIFEST
+===================================================== -->
+
+<script>
+
+const manifestData = {
+
+    name: "XLine Reklam",
+
+    short_name: "XLine",
+
+    description:
+        "XLine Reklam Business Smart Card",
+
+    start_url:
+        window.location.href,
+
+    scope:
+        "./",
+
+    display:
+        "standalone",
+
+    background_color:
+        "#050505",
+
+    theme_color:
+        "#050505",
+
+    orientation:
+        "portrait",
+
+    icons: [
+
+        {
+            src: "./xlinelogo.png",
+            sizes: "192x192",
+            type: "image/png"
+        },
+
+        {
+            src: "./xlinelogo.png",
+            sizes: "512x512",
+            type: "image/png"
+        }
+
+    ]
+
+};
+
+
+const manifestBlob =
+    new Blob(
+        [
+            JSON.stringify(manifestData)
+        ],
+        {
+            type:
+                "application/manifest+json"
+        }
+    );
+
+
+const manifestURL =
+    URL.createObjectURL(
+        manifestBlob
+    );
+
+
+const manifestLink =
+    document.createElement("link");
+
+
+manifestLink.rel =
+    "manifest";
+
+manifestLink.href =
+    manifestURL;
+
+
+document.head.appendChild(
+    manifestLink
+);
+
+</script>
+
 
 <style>
 
@@ -23,9 +141,15 @@ html,
 body{
     width:100%;
     min-height:100%;
+
     background:#050505;
+
     color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 body{
@@ -35,11 +159,12 @@ body{
 
 /* =====================================================
    GİRİŞ EKRANI
-   TAMAMEN OPAK
 ===================================================== */
 
 #intro{
+
     position:fixed;
+
     top:0;
     left:0;
     right:0;
@@ -53,12 +178,14 @@ body{
     background:#050505;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     overflow:hidden;
 
     opacity:1;
+
     visibility:visible;
 
     isolation:isolate;
@@ -69,8 +196,11 @@ body{
 }
 
 #intro.hide{
+
     opacity:0;
+
     visibility:hidden;
+
     pointer-events:none;
 }
 
@@ -80,6 +210,7 @@ body{
 ===================================================== */
 
 .intro-glow{
+
     position:absolute;
 
     width:500px;
@@ -88,9 +219,11 @@ body{
     left:50%;
     top:48%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     background:
+
         radial-gradient(
             circle,
             #241010 0%,
@@ -102,7 +235,12 @@ body{
 
     filter:blur(10px);
 
-    animation:introGlow 3s ease-in-out infinite alternate;
+    animation:
+        introGlow
+        3s
+        ease-in-out
+        infinite
+        alternate;
 
     pointer-events:none;
 }
@@ -110,16 +248,20 @@ body{
 @keyframes introGlow{
 
     0%{
+
         transform:
             translate(-50%,-50%)
             scale(.82);
+
         opacity:.7;
     }
 
     100%{
+
         transform:
             translate(-50%,-50%)
             scale(1.08);
+
         opacity:1;
     }
 }
@@ -130,6 +272,7 @@ body{
 ===================================================== */
 
 .scan-line{
+
     position:absolute;
 
     left:0;
@@ -143,10 +286,15 @@ body{
     opacity:.35;
 
     box-shadow:
+
         0 0 10px #e00000,
         0 0 25px #e00000;
 
-    animation:scanMove 3s linear infinite;
+    animation:
+        scanMove
+        3s
+        linear
+        infinite;
 
     pointer-events:none;
 }
@@ -168,13 +316,17 @@ body{
 ===================================================== */
 
 .intro-content{
+
     position:relative;
+
     z-index:10;
 
     width:100%;
+
     max-width:430px;
 
-    padding:30px 20px;
+    padding:
+        30px 20px;
 
     text-align:center;
 }
@@ -185,15 +337,19 @@ body{
 ===================================================== */
 
 .intro-xline{
+
     font-size:52px;
+
     font-weight:900;
 
     letter-spacing:7px;
+
     line-height:1;
 
     opacity:0;
 
     animation:
+
         introLogo
         1s
         cubic-bezier(.2,.8,.2,1)
@@ -202,26 +358,39 @@ body{
 }
 
 .intro-xline span{
+
     color:#e00000;
 }
 
 @keyframes introLogo{
 
     0%{
+
         opacity:0;
-        transform:scale(.65);
+
+        transform:
+            scale(.65);
+
         filter:blur(15px);
     }
 
     60%{
+
         opacity:1;
-        transform:scale(1.08);
+
+        transform:
+            scale(1.08);
+
         filter:blur(0);
     }
 
     100%{
+
         opacity:1;
-        transform:scale(1);
+
+        transform:
+            scale(1);
+
         filter:blur(0);
     }
 }
@@ -232,7 +401,9 @@ body{
 ===================================================== */
 
 .intro-line{
+
     width:0;
+
     height:3px;
 
     margin:
@@ -243,10 +414,12 @@ body{
     background:#e00000;
 
     box-shadow:
+
         0 0 8px #e00000,
         0 0 22px #e00000;
 
     animation:
+
         lineGrow
         .8s
         ease
@@ -257,12 +430,16 @@ body{
 @keyframes lineGrow{
 
     from{
+
         width:0;
+
         opacity:0;
     }
 
     to{
+
         width:150px;
+
         opacity:1;
     }
 }
@@ -273,13 +450,17 @@ body{
 ===================================================== */
 
 .brand-container{
+
     position:relative;
 
     width:100%;
+
     min-height:125px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     gap:14px;
@@ -291,6 +472,7 @@ body{
 }
 
 .brand{
+
     width:105px;
     height:105px;
 
@@ -299,6 +481,7 @@ body{
     opacity:0;
 
     filter:
+
         drop-shadow(
             0 0 8px
             rgba(255,255,255,.08)
@@ -306,10 +489,14 @@ body{
 }
 
 
-/* GRASOTRE */
+/* =====================================================
+   GRASOTRE
+===================================================== */
 
 .brand.grasotre{
+
     animation:
+
         brandLeft
         1s
         cubic-bezier(.2,.8,.2,1)
@@ -320,6 +507,7 @@ body{
 @keyframes brandLeft{
 
     0%{
+
         opacity:0;
 
         transform:
@@ -331,6 +519,7 @@ body{
     }
 
     70%{
+
         opacity:1;
 
         transform:
@@ -342,6 +531,7 @@ body{
     }
 
     100%{
+
         opacity:1;
 
         transform:
@@ -354,10 +544,14 @@ body{
 }
 
 
-/* PROMX */
+/* =====================================================
+   PROMX
+===================================================== */
 
 .brand.promx{
+
     animation:
+
         brandCenter
         1s
         cubic-bezier(.2,.8,.2,1)
@@ -368,6 +562,7 @@ body{
 @keyframes brandCenter{
 
     0%{
+
         opacity:0;
 
         transform:
@@ -378,6 +573,7 @@ body{
     }
 
     70%{
+
         opacity:1;
 
         transform:
@@ -388,6 +584,7 @@ body{
     }
 
     100%{
+
         opacity:1;
 
         transform:
@@ -399,10 +596,14 @@ body{
 }
 
 
-/* XMAT */
+/* =====================================================
+   XMAT
+===================================================== */
 
 .brand.xmat{
+
     animation:
+
         brandRight
         1s
         cubic-bezier(.2,.8,.2,1)
@@ -413,6 +614,7 @@ body{
 @keyframes brandRight{
 
     0%{
+
         opacity:0;
 
         transform:
@@ -424,6 +626,7 @@ body{
     }
 
     70%{
+
         opacity:1;
 
         transform:
@@ -435,6 +638,7 @@ body{
     }
 
     100%{
+
         opacity:1;
 
         transform:
@@ -452,6 +656,7 @@ body{
 ===================================================== */
 
 .welcome{
+
     font-size:13px;
 
     font-weight:700;
@@ -463,6 +668,7 @@ body{
     opacity:0;
 
     animation:
+
         welcomeIn
         .8s
         ease
@@ -473,14 +679,22 @@ body{
 @keyframes welcomeIn{
 
     from{
+
         opacity:0;
-        transform:translateY(15px);
+
+        transform:
+            translateY(15px);
+
         letter-spacing:8px;
     }
 
     to{
+
         opacity:1;
-        transform:translateY(0);
+
+        transform:
+            translateY(0);
+
         letter-spacing:4px;
     }
 }
@@ -491,12 +705,15 @@ body{
 ===================================================== */
 
 .main-wrapper{
+
     width:100%;
+
     min-height:100vh;
 
     display:flex;
 
     justify-content:center;
+
     align-items:flex-start;
 
     padding:
@@ -506,10 +723,13 @@ body{
 }
 
 .card{
+
     width:100%;
+
     max-width:430px;
 
     background:
+
         linear-gradient(
             145deg,
             #151515,
@@ -527,8 +747,12 @@ body{
         25px;
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,.65),
-        0 0 35px rgba(220,0,0,.05);
+
+        0 20px 70px
+        rgba(0,0,0,.65),
+
+        0 0 35px
+        rgba(220,0,0,.05);
 
     overflow:hidden;
 }
@@ -539,21 +763,29 @@ body{
 ===================================================== */
 
 .logo-area{
+
     text-align:center;
+
     margin-bottom:20px;
 }
 
 .logo-area img{
+
     width:150px;
+
     max-width:70%;
+
     height:auto;
+
     object-fit:contain;
 }
 
 .brand-name{
+
     margin-top:10px;
 
     font-size:12px;
+
     font-weight:bold;
 
     letter-spacing:3px;
@@ -567,6 +799,7 @@ body{
 ===================================================== */
 
 .profile{
+
     text-align:center;
 
     padding:
@@ -576,14 +809,18 @@ body{
 }
 
 .profile h1{
+
     font-size:25px;
+
     font-weight:800;
 
     margin-bottom:7px;
 }
 
 .profile p{
+
     color:#aaa;
+
     font-size:14px;
 }
 
@@ -593,21 +830,24 @@ body{
 ===================================================== */
 
 .quick-buttons{
+
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap:10px;
 
     margin:
-        18px
-        0;
+        18px 0;
 }
 
 .quick-btn{
+
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     gap:8px;
@@ -619,16 +859,21 @@ body{
     text-decoration:none;
 
     font-size:14px;
+
     font-weight:700;
 
     transition:.25s ease;
 
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     cursor:pointer;
 }
 
 .call-btn{
+
     background:#e00000;
 
     color:#fff;
@@ -636,11 +881,13 @@ body{
     border:none;
 
     box-shadow:
+
         0 8px 25px
         rgba(220,0,0,.18);
 }
 
 .save-btn{
+
     background:#171717;
 
     color:#fff;
@@ -650,7 +897,97 @@ body{
 }
 
 .quick-btn:hover{
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =====================================================
+   TELEFONA EKLE BUTONU
+===================================================== */
+
+.install-button{
+
+    width:100%;
+
+    min-height:54px;
+
+    margin:
+        5px 0
+        17px;
+
+    border-radius:15px;
+
+    border:
+        1px solid #4a4a4a;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #1d1d1d,
+            #0d0d0d
+        );
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.25);
+
+    transition:
+        .25s ease;
+}
+
+.install-button .install-icon{
+
+    width:28px;
+    height:28px;
+
+    border-radius:8px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#e00000;
+
+    color:#fff;
+
+    font-size:17px;
+}
+
+.install-button:hover{
+
+    transform:
+        translateY(-2px);
+
+    border-color:#e00000;
+
+    background:#171717;
 }
 
 
@@ -670,13 +1007,7 @@ body{
         20px;
 
     padding:
-        5px
-        0;
-
-    /*
-       Dış çerçeveyi kaldırdık.
-       Kutuların kendisi hareket ediyor.
-    */
+        5px 0;
 }
 
 .ticker-track{
@@ -707,8 +1038,7 @@ body{
     height:34px;
 
     padding:
-        0
-        15px;
+        0 15px;
 
     border-radius:9px;
 
@@ -728,10 +1058,11 @@ body{
     white-space:nowrap;
 
     box-shadow:
-        0 4px 15px rgba(0,0,0,.25);
 
-    transition:
-        .25s ease;
+        0 4px 15px
+        rgba(0,0,0,.25);
+
+    transition:.25s ease;
 }
 
 .ticker span:hover{
@@ -742,17 +1073,16 @@ body{
 
     background:#1b0b0b;
 
-    transform:translateY(-2px);
+    transform:
+        translateY(-2px);
 }
-
-
-/* Kırmızı nokta */
 
 .ticker span::before{
 
     content:"";
 
     width:5px;
+
     height:5px;
 
     border-radius:50%;
@@ -762,21 +1092,25 @@ body{
     margin-right:7px;
 
     box-shadow:
+
         0 0 7px
         rgba(220,0,0,.8);
 
     flex-shrink:0;
 }
 
-
 @keyframes tickerMove{
 
     from{
-        transform:translateX(0);
+
+        transform:
+            translateX(0);
     }
 
     to{
-        transform:translateX(-50%);
+
+        transform:
+            translateX(-50%);
     }
 }
 
@@ -786,6 +1120,7 @@ body{
 ===================================================== */
 
 .buttons{
+
     display:flex;
 
     flex-direction:column;
@@ -823,11 +1158,15 @@ body{
     font-weight:700;
 
     transition:
+
         transform .25s ease,
         background .25s ease,
         border-color .25s ease;
 
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     cursor:pointer;
 }
@@ -859,12 +1198,10 @@ body{
     color:#fff;
 }
 
-
-/* Hover */
-
 .action-btn:hover{
 
-    transform:translateY(-2px);
+    transform:
+        translateY(-2px);
 
     background:#171717;
 
@@ -889,6 +1226,7 @@ body{
 ===================================================== */
 
 .review{
+
     margin-top:15px;
 }
 
@@ -897,6 +1235,7 @@ body{
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
     gap:8px;
@@ -938,7 +1277,229 @@ body{
 }
 
 .footer strong{
+
     color:#aaa;
+}
+
+
+/* =====================================================
+   TELEFONA EKLE MODAL
+===================================================== */
+
+#installModal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000000;
+
+    display:none;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    padding:18px;
+
+    background:
+        rgba(0,0,0,.78);
+}
+
+#installModal.show{
+
+    display:flex;
+}
+
+.install-box{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #090909
+        );
+
+    border:
+        1px solid #333;
+
+    border-radius:
+        24px
+        24px
+        18px
+        18px;
+
+    padding:
+        25px
+        20px
+        22px;
+
+    box-shadow:
+        0 -15px 60px
+        rgba(0,0,0,.6);
+
+    animation:
+        installUp
+        .35s
+        ease;
+}
+
+@keyframes installUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(40px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.install-title{
+
+    text-align:center;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    margin-bottom:7px;
+}
+
+.install-title span{
+
+    color:#e00000;
+}
+
+.install-subtitle{
+
+    text-align:center;
+
+    color:#999;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    margin-bottom:22px;
+}
+
+.install-step{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:
+        13px 12px;
+
+    margin-bottom:9px;
+
+    border-radius:13px;
+
+    background:#111;
+
+    border:
+        1px solid #242424;
+}
+
+.step-number{
+
+    width:30px;
+    height:30px;
+
+    border-radius:9px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#e00000;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    flex-shrink:0;
+}
+
+.step-text{
+
+    font-size:13px;
+
+    line-height:1.35;
+
+    color:#ddd;
+}
+
+.step-text strong{
+
+    color:#fff;
+}
+
+.install-close{
+
+    width:100%;
+
+    height:46px;
+
+    margin-top:12px;
+
+    border-radius:12px;
+
+    border:
+        1px solid #333;
+
+    background:#191919;
+
+    color:#fff;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   KURULDU MESAJI
+===================================================== */
+
+.installed-message{
+
+    display:none;
+
+    text-align:center;
+
+    color:#8c8c8c;
+
+    font-size:10px;
+
+    margin:
+        -7px
+        0
+        14px;
+}
+
+.installed-message.show{
+
+    display:block;
 }
 
 
@@ -983,8 +1544,7 @@ body{
         height:32px;
 
         padding:
-            0
-            12px;
+            0 12px;
 
         font-size:8px;
     }
@@ -992,6 +1552,7 @@ body{
 }
 
 </style>
+
 </head>
 
 
@@ -1011,11 +1572,12 @@ body{
     <div class="intro-content">
 
         <div class="intro-xline">
+
             X<span>LINE</span>
+
         </div>
 
         <div class="intro-line"></div>
-
 
         <div class="brand-container">
 
@@ -1039,15 +1601,140 @@ body{
 
         </div>
 
-
         <div class="welcome">
+
             BUSINESS SMART CARD
+
         </div>
 
     </div>
 
 </div>
 
+
+<!-- =====================================================
+     TELEFONA EKLE MODAL
+===================================================== -->
+
+<div
+    id="installModal"
+    onclick="closeInstallOutside(event)"
+>
+
+    <div
+        class="install-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="install-title">
+
+            X<span>LINE</span>'I TELEFONUNA EKLE
+
+        </div>
+
+        <div class="install-subtitle">
+
+            Bu profili uygulama gibi telefonunun
+            ana ekranından tek dokunuşla aç.
+
+        </div>
+
+
+        <div
+            id="iosSteps"
+        >
+
+            <div class="install-step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div class="step-text">
+
+                    Safari'nin altındaki
+                    <strong>Paylaş ⬆</strong>
+                    butonuna dokun.
+
+                </div>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div class="step-text">
+
+                    Menüden
+                    <strong>"Ana Ekrana Ekle"</strong>
+                    seçeneğine dokun.
+
+                </div>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div class="step-text">
+
+                    Sağ üstten
+                    <strong>"Ekle"</strong>
+                    seçeneğine dokun.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="androidInstallText"
+            style="display:none;"
+        >
+
+            <div class="install-step">
+
+                <div class="step-number">
+                    ✓
+                </div>
+
+                <div class="step-text">
+
+                    Tarayıcının menüsünden
+                    <strong>"Ana ekrana ekle"</strong>
+                    veya
+                    <strong>"Uygulamayı yükle"</strong>
+                    seçeneğini kullan.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="install-close"
+            onclick="closeInstall()"
+        >
+
+            Kapat
+
+        </button>
+
+    </div>
+
+</div>
 
 
 <!-- =====================================================
@@ -1069,7 +1756,9 @@ body{
             >
 
             <div class="brand-name">
+
                 TANITIM REKLAM
+
             </div>
 
         </div>
@@ -1080,11 +1769,15 @@ body{
         <section class="profile">
 
             <h1>
+
                 Refik ÖZÇAKMAK
+
             </h1>
 
             <p>
+
                 XLine Reklam
+
             </p>
 
         </section>
@@ -1120,6 +1813,36 @@ body{
         </div>
 
 
+        <!-- =================================================
+             TELEFONA EKLE
+        ================================================= -->
+
+        <button
+            id="installButton"
+            class="install-button"
+            onclick="installXLine()"
+        >
+
+            <span class="install-icon">
+                ↥
+            </span>
+
+            <span>
+                XLINE'I TELEFONUMA EKLE
+            </span>
+
+        </button>
+
+
+        <div
+            id="installedMessage"
+            class="installed-message"
+        >
+
+            ✓ XLine telefonuna eklendi
+
+        </div>
+
 
         <!-- =================================================
              KUTULU HİZMET BANNERLERİ
@@ -1129,53 +1852,42 @@ body{
 
             <div class="ticker-track">
 
-
                 <span>
                     TABELA &amp; REKLAM
                 </span>
-
 
                 <span>
                     MATBAA
                 </span>
 
-
                 <span>
                     PROMOSYON
                 </span>
 
-
                 <span>
                     TEKSTİL BASKI
                 </span>
-
 
                 <span>
                     LED EKRAN
                 </span>
 
 
-                <!-- İKİNCİ SET -->
-
                 <span>
                     TABELA &amp; REKLAM
                 </span>
-
 
                 <span>
                     MATBAA
                 </span>
 
-
                 <span>
                     PROMOSYON
                 </span>
 
-
                 <span>
                     TEKSTİL BASKI
                 </span>
-
 
                 <span>
                     LED EKRAN
@@ -1184,7 +1896,6 @@ body{
             </div>
 
         </div>
-
 
 
         <!-- =================================================
@@ -1201,7 +1912,9 @@ body{
                 href="tel:+905535964626"
             >
 
-                <span class="icon">☎</span>
+                <span class="icon">
+                    ☎
+                </span>
 
                 <span>
                     Hemen Ara
@@ -1216,9 +1929,12 @@ body{
                 class="action-btn"
                 href="https://wa.me/905535964626"
                 target="_blank"
+                rel="noopener"
             >
 
-                <span class="icon">◉</span>
+                <span class="icon">
+                    ◉
+                </span>
 
                 <span>
                     WhatsApp
@@ -1233,9 +1949,12 @@ body{
                 class="action-btn"
                 href="https://www.google.com/maps?q=36.546513015199764,32.001413146036626"
                 target="_blank"
+                rel="noopener"
             >
 
-                <span class="icon">⌖</span>
+                <span class="icon">
+                    ⌖
+                </span>
 
                 <span>
                     Konuma Git
@@ -1251,7 +1970,9 @@ body{
                 onclick="copyIBAN()"
             >
 
-                <span class="icon">₺</span>
+                <span class="icon">
+                    ₺
+                </span>
 
                 <span>
                     IBAN Kopyala
@@ -1268,7 +1989,9 @@ body{
                 onclick="return false;"
             >
 
-                <span class="icon">⌂</span>
+                <span class="icon">
+                    ⌂
+                </span>
 
                 <span>
                     Web Sitesi
@@ -1285,7 +2008,9 @@ body{
                 onclick="return false;"
             >
 
-                <span class="icon">◎</span>
+                <span class="icon">
+                    ◎
+                </span>
 
                 <span>
                     Sosyal Medya
@@ -1302,7 +2027,9 @@ body{
                 onclick="return false;"
             >
 
-                <span class="icon">▤</span>
+                <span class="icon">
+                    ▤
+                </span>
 
                 <span>
                     Dijital Katalog
@@ -1311,7 +2038,6 @@ body{
             </a>
 
         </div>
-
 
 
         <!-- =================================================
@@ -1325,14 +2051,15 @@ body{
                 onclick="return false;"
             >
 
-                <span>★</span>
+                <span>
+                    ★
+                </span>
 
                 Google'da Bizi Değerlendirin
 
             </a>
 
         </div>
-
 
 
         <!-- =================================================
@@ -1357,29 +2084,36 @@ body{
 </div>
 
 
-
 <script>
 
 /* =====================================================
    GİRİŞ ANİMASYONU
 ===================================================== */
 
-window.addEventListener("load",function(){
+window.addEventListener(
+    "load",
+    function(){
 
-    setTimeout(function(){
+        setTimeout(
+            function(){
 
-        const intro =
-            document.getElementById("intro");
+                const intro =
+                    document.getElementById("intro");
 
-        if(intro){
+                if(intro){
 
-            intro.classList.add("hide");
+                    intro.classList.add(
+                        "hide"
+                    );
 
-        }
+                }
 
-    },3300);
+            },
+            3300
+        );
 
-});
+    }
+);
 
 
 /* =====================================================
@@ -1399,22 +2133,30 @@ function copyIBAN(){
 
         navigator.clipboard
             .writeText(iban)
-            .then(function(){
+            .then(
+                function(){
 
-                alert(
-                    "IBAN kopyalandı."
-                );
+                    alert(
+                        "IBAN kopyalandı."
+                    );
 
-            })
-            .catch(function(){
+                }
+            )
+            .catch(
+                function(){
 
-                fallbackCopy(iban);
+                    fallbackCopy(
+                        iban
+                    );
 
-            });
+                }
+            );
 
     }else{
 
-        fallbackCopy(iban);
+        fallbackCopy(
+            iban
+        );
 
     }
 
@@ -1424,15 +2166,22 @@ function copyIBAN(){
 function fallbackCopy(text){
 
     const input =
-        document.createElement("textarea");
+        document.createElement(
+            "textarea"
+        );
 
-    input.value=text;
+    input.value =
+        text;
 
-    input.style.position="fixed";
+    input.style.position =
+        "fixed";
 
-    input.style.opacity="0";
+    input.style.opacity =
+        "0";
 
-    document.body.appendChild(input);
+    document.body.appendChild(
+        input
+    );
 
     input.focus();
 
@@ -1441,7 +2190,9 @@ function fallbackCopy(text){
 
     try{
 
-        document.execCommand("copy");
+        document.execCommand(
+            "copy"
+        );
 
         alert(
             "IBAN kopyalandı."
@@ -1456,7 +2207,9 @@ function fallbackCopy(text){
     }
 
 
-    document.body.removeChild(input);
+    document.body.removeChild(
+        input
+    );
 
 }
 
@@ -1482,37 +2235,333 @@ END:VCARD`;
             [vcard],
             {
                 type:
-                "text/vcard;charset=utf-8"
+                    "text/vcard;charset=utf-8"
             }
         );
 
 
     const url =
-        URL.createObjectURL(blob);
+        URL.createObjectURL(
+            blob
+        );
 
 
     const a =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
 
 
-    a.href=url;
+    a.href =
+        url;
 
-    a.download=
+    a.download =
         "Refik-Ozcakmak-XLine-Reklam.vcf";
 
 
-    document.body.appendChild(a);
+    document.body.appendChild(
+        a
+    );
 
     a.click();
 
-    document.body.removeChild(a);
+    document.body.removeChild(
+        a
+    );
 
 
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(
+        url
+    );
 
 }
 
+
+/* =====================================================
+   CİHAZ ALGILAMA
+===================================================== */
+
+function isIOS(){
+
+    return /iPhone|iPad|iPod/i.test(
+        navigator.userAgent
+    );
+}
+
+
+function isAndroid(){
+
+    return /Android/i.test(
+        navigator.userAgent
+    );
+}
+
+
+function isStandalone(){
+
+    return (
+
+        window.matchMedia &&
+        window.matchMedia(
+            "(display-mode: standalone)"
+        ).matches
+
+    ) ||
+
+    window.navigator.standalone === true;
+
+}
+
+
+/* =====================================================
+   ANDROID KURULUM İSTEMİ
+===================================================== */
+
+let deferredPrompt = null;
+
+
+window.addEventListener(
+    "beforeinstallprompt",
+    function(event){
+
+        event.preventDefault();
+
+        deferredPrompt =
+            event;
+
+    }
+);
+
+
+/* =====================================================
+   TELEFONA EKLE
+===================================================== */
+
+function installXLine(){
+
+    /*
+       Zaten uygulama gibi açılmışsa
+    */
+
+    if(
+        isStandalone()
+    ){
+
+        alert(
+            "XLine zaten telefonunun ana ekranında."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Android'de tarayıcı gerçek
+       kurulum penceresi verdiyse
+    */
+
+    if(
+        deferredPrompt
+    ){
+
+        deferredPrompt
+            .prompt();
+
+        deferredPrompt
+            .userChoice
+            .then(
+                function(choice){
+
+                    if(
+                        choice.outcome ===
+                        "accepted"
+                    ){
+
+                        showInstalled();
+
+                    }
+
+                    deferredPrompt =
+                        null;
+
+                }
+            );
+
+        return;
+
+    }
+
+
+    /*
+       iPhone
+    */
+
+    if(
+        isIOS()
+    ){
+
+        document
+            .getElementById(
+                "iosSteps"
+            )
+            .style.display =
+                "block";
+
+        document
+            .getElementById(
+                "androidInstallText"
+            )
+            .style.display =
+                "none";
+
+        document
+            .getElementById(
+                "installModal"
+            )
+            .classList.add(
+                "show"
+            );
+
+        return;
+
+    }
+
+
+    /*
+       Android / diğer cihaz
+    */
+
+    document
+        .getElementById(
+            "iosSteps"
+        )
+        .style.display =
+            "none";
+
+    document
+        .getElementById(
+            "androidInstallText"
+        )
+        .style.display =
+            "block";
+
+    document
+        .getElementById(
+            "installModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =====================================================
+   MODAL KAPAT
+===================================================== */
+
+function closeInstall(){
+
+    document
+        .getElementById(
+            "installModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+function closeInstallOutside(event){
+
+    if(
+        event.target.id ===
+        "installModal"
+    ){
+
+        closeInstall();
+
+    }
+
+}
+
+
+/* =====================================================
+   KURULDU
+===================================================== */
+
+function showInstalled(){
+
+    const button =
+        document.getElementById(
+            "installButton"
+        );
+
+    const message =
+        document.getElementById(
+            "installedMessage"
+        );
+
+
+    if(button){
+
+        button.style.display =
+            "none";
+
+    }
+
+
+    if(message){
+
+        message.classList.add(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SAYFA UYGULAMA OLARAK AÇILDIYSA
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        if(
+            isStandalone()
+        ){
+
+            showInstalled();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   APP INSTALLED EVENT
+===================================================== */
+
+window.addEventListener(
+    "appinstalled",
+    function(){
+
+        showInstalled();
+
+        deferredPrompt =
+            null;
+
+    }
+);
+
 </script>
+
 
 </body>
 </html>
